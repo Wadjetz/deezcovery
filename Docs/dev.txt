@@ -1,0 +1,44 @@
+API :
+	1/ Chercher par artiste
+		La recherche par artiste existe, et prend en entrée simplement le nom d'artiste.
+		http://developers.deezer.com/api/search/artist
+
+	2/ Recherche d'artistes similaires
+		Dans le cas d'un recherche d'artistes similaires, effectuer la même chose en ignorant l'artiste d'où part la recherche.
+		http://developers.deezer.com/api/search/artist
+
+	3/ Informations de l'artiste
+		Très simple, juste avec son id.
+		http://developers.deezer.com/api/artist
+
+	3/ Ensemble de titres musicaux de l'artiste
+		On peut accéder au "top" de l'artiste simplement avec une requete du type "http://api.deezer.com/artist/27/top", avec directement les liens vers les mp3.
+		Un lien du type next/prev est donné avec, permettant de charger plus de morceaux.
+		http://developers.deezer.com/api/artist/top
+
+
+Liste des vues :
+
+	1/ Recherche générale
+		Un champ de recherche, avec la liste de résultat en dessous.
+		Chaque cellule peut être selectionnée.
+		Un clique sur la cellule affiche la vue de l'artiste.
+		Bouton de retour.
+
+	2/ Favoris
+		Liste d'artistes, semblable à la recherche générale.
+		Un clique sur la cellule affiche la vue de l'artiste.
+		Bouton de retour.
+
+	2/ Vue d'un artiste
+		Affiche les informations de l'artiste et sa photo.
+		Donne des liens vers :
+			- Sa track list.
+			- Les artistes semblables.
+		Bouton pour ajouter aux favoris (si pas déjà ajouté, sinon lien pour supprimer les favoris).
+		Bouton de retour.
+
+	3/ Tracklist d'un artiste
+		Charge 5/10/15 morceaux de l'artiste, avec la possiblité de les écouter en preview.
+		Bouton pour en charge 5/10/15 de plus qui s'ajouterons à la liste.
+		Bouton de retour.
