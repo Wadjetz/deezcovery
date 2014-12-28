@@ -14,6 +14,7 @@
 
 @property (nonatomic, strong)UISearchDisplayController *searchController;
 @property (strong)ArtistList *artistsList;
+@property (strong)UITableView *resultsView;
 
 @property NSOperationQueue *queue;
 
@@ -71,7 +72,7 @@ static NSString *CellIdentifier = @"CellIdentifier";
     // Configure cell
     cell.textLabel.text = [[NSString alloc] initWithFormat:@"%@ - (%i fans)", artist.name, artist.nb_fan];
     
-    NSLog(@"Called refresh");
+    //NSLog(@"Called refresh");
     
     return cell;
 }
@@ -89,12 +90,10 @@ static NSString *CellIdentifier = @"CellIdentifier";
 #pragma mark Search Display Delegate Methods
 
 -(void)searchDisplayController:(UISearchDisplayController *)controller didLoadSearchResultsTableView:(UITableView *)tableView {
-    
+    self.resultsView = tableView;
 }
 
 -(BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchString:(NSString *)searchString {
-    
-    NSLog(@"Called with : %@",  self.searchBar.text);
     
     // Cancel all the pending searchs
     [self.queue cancelAllOperations];
@@ -102,9 +101,6 @@ static NSString *CellIdentifier = @"CellIdentifier";
     // Nothing to search
     if(self.searchBar.text.length <= 0) {
         [self.artistsList.artists removeAllObjects];
-        
-        // Reload
-        [self reloadResults];
         
         return TRUE;
     }
@@ -137,7 +133,8 @@ static NSString *CellIdentifier = @"CellIdentifier";
 }
 
 -(void) reloadResults {
-    [self.searchController.searchResultsTableView performSelectorOnMainThread:@selector(reloadData) withObject:nil waitUntilDone:NO];
+    if(self.resultsView)
+        [self.resultsView performSelectorOnMainThread:@selector(reloadData) withObject:nil waitUntilDone:NO];
 }
 
 
