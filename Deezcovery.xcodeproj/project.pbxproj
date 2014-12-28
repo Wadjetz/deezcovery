@@ -15,6 +15,7 @@
 		74EF91281A40343C0044F2BE /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 74EF91261A40343C0044F2BE /* LaunchScreen.xib */; };
 		74EF91341A40343C0044F2BE /* DeezcoveryTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 74EF91331A40343C0044F2BE /* DeezcoveryTests.m */; };
 		F75357081A4F8C3700AD348B /* ArtistList.m in Sources */ = {isa = PBXBuildFile; fileRef = F75357071A4F8C3700AD348B /* ArtistList.m */; };
+		F753570B1A50570A00AD348B /* ArtistDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = F753570A1A50570A00AD348B /* ArtistDetailController.m */; };
 		F7660A661A4EF8F900F0A9E7 /* Artist.m in Sources */ = {isa = PBXBuildFile; fileRef = F7660A651A4EF8F900F0A9E7 /* Artist.m */; };
 		F7660A6B1A4F6B5C00F0A9E7 /* ArtistSearchController.m in Sources */ = {isa = PBXBuildFile; fileRef = F7660A6A1A4F6B5C00F0A9E7 /* ArtistSearchController.m */; };
 /* End PBXBuildFile section */
@@ -45,6 +46,8 @@
 		74EF91331A40343C0044F2BE /* DeezcoveryTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DeezcoveryTests.m; sourceTree = "<group>"; };
 		F75357061A4F8C3700AD348B /* ArtistList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ArtistList.h; sourceTree = "<group>"; };
 		F75357071A4F8C3700AD348B /* ArtistList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ArtistList.m; sourceTree = "<group>"; };
+		F75357091A50570A00AD348B /* ArtistDetailController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ArtistDetailController.h; sourceTree = "<group>"; };
+		F753570A1A50570A00AD348B /* ArtistDetailController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ArtistDetailController.m; sourceTree = "<group>"; };
 		F7660A641A4EF8F900F0A9E7 /* Artist.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Artist.h; sourceTree = "<group>"; };
 		F7660A651A4EF8F900F0A9E7 /* Artist.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Artist.m; sourceTree = "<group>"; };
 		F7660A681A4F5BEC00F0A9E7 /* DeezerApi.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DeezerApi.h; sourceTree = "<group>"; };
@@ -103,6 +106,8 @@
 				F7660A681A4F5BEC00F0A9E7 /* DeezerApi.h */,
 				F7660A691A4F6B5C00F0A9E7 /* ArtistSearchController.h */,
 				F7660A6A1A4F6B5C00F0A9E7 /* ArtistSearchController.m */,
+				F75357091A50570A00AD348B /* ArtistDetailController.h */,
+				F753570A1A50570A00AD348B /* ArtistDetailController.m */,
 			);
 			path = Deezcovery;
 			sourceTree = "<group>";
@@ -247,6 +252,7 @@
 				74EF91201A40343C0044F2BE /* ViewController.m in Sources */,
 				F7660A6B1A4F6B5C00F0A9E7 /* ArtistSearchController.m in Sources */,
 				F75357081A4F8C3700AD348B /* ArtistList.m in Sources */,
+				F753570B1A50570A00AD348B /* ArtistDetailController.m in Sources */,
 				74EF911D1A40343C0044F2BE /* AppDelegate.m in Sources */,
 				F7660A661A4EF8F900F0A9E7 /* Artist.m in Sources */,
 				74EF911A1A40343C0044F2BE /* main.m in Sources */,

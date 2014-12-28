@@ -35,7 +35,7 @@
 
 // Return the artist's photo link
 - (NSString *)getPhotoLink {
-    return [[NSString alloc]initWithFormat:@"%@/artist/%d/image", DEEZER_ENDPOINT, self.artist_id];
+    return [[NSString alloc]initWithFormat:@"%@/artist/%d/image?size=big", DEEZER_ENDPOINT, self.artist_id];
 }
 
 // Return the artist's top tracks link

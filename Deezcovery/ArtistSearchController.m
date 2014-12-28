@@ -9,6 +9,7 @@
 #import "ArtistSearchController.h"
 #import "Artist.h"
 #import "ArtistList.h"
+#import "ArtistDetailController.h"
 
 @interface ArtistSearchController ()
 
@@ -85,6 +86,23 @@ static NSString *CellIdentifier = @"CellIdentifier";
 // -- If the order can be changed --
 - (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
     return NO;
+}
+
+// -- Cell selected --
+- (void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    [self performSegueWithIdentifier:@"showArtist" sender:self.artistsList.artists[indexPath.row]];
+    
+    //ArtistDetailController *controller = [[ArtistDetailController alloc] init];
+    //[self.navigationController pushViewController:controller animated:YES];
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    // Prepare the segue, set the sended artist
+    if([segue.identifier isEqualToString:@"showArtist"]) {
+        ArtistDetailController *controller = segue.destinationViewController;
+        controller.artist = sender;
+    }
 }
 
 #pragma mark Search Display Delegate Methods
