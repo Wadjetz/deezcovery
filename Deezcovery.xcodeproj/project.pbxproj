@@ -18,6 +18,7 @@
 		F753570B1A50570A00AD348B /* ArtistDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = F753570A1A50570A00AD348B /* ArtistDetailController.m */; };
 		F7660A661A4EF8F900F0A9E7 /* Artist.m in Sources */ = {isa = PBXBuildFile; fileRef = F7660A651A4EF8F900F0A9E7 /* Artist.m */; };
 		F7660A6B1A4F6B5C00F0A9E7 /* ArtistSearchController.m in Sources */ = {isa = PBXBuildFile; fileRef = F7660A6A1A4F6B5C00F0A9E7 /* ArtistSearchController.m */; };
+		F79992691A520E2400D17464 /* ArtistTrackController.m in Sources */ = {isa = PBXBuildFile; fileRef = F79992681A520E2400D17464 /* ArtistTrackController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +54,8 @@
 		F7660A681A4F5BEC00F0A9E7 /* DeezerApi.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DeezerApi.h; sourceTree = "<group>"; };
 		F7660A691A4F6B5C00F0A9E7 /* ArtistSearchController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ArtistSearchController.h; sourceTree = "<group>"; };
 		F7660A6A1A4F6B5C00F0A9E7 /* ArtistSearchController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ArtistSearchController.m; sourceTree = "<group>"; };
+		F79992671A520E2400D17464 /* ArtistTrackController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ArtistTrackController.h; sourceTree = "<group>"; };
+		F79992681A520E2400D17464 /* ArtistTrackController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ArtistTrackController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -104,6 +107,8 @@
 				74EF91171A40343C0044F2BE /* Supporting Files */,
 				F7660A671A4EF90900F0A9E7 /* Models */,
 				F7660A681A4F5BEC00F0A9E7 /* DeezerApi.h */,
+				F79992671A520E2400D17464 /* ArtistTrackController.h */,
+				F79992681A520E2400D17464 /* ArtistTrackController.m */,
 				F7660A691A4F6B5C00F0A9E7 /* ArtistSearchController.h */,
 				F7660A6A1A4F6B5C00F0A9E7 /* ArtistSearchController.m */,
 				F75357091A50570A00AD348B /* ArtistDetailController.h */,
@@ -251,6 +256,7 @@
 			files = (
 				74EF91201A40343C0044F2BE /* ViewController.m in Sources */,
 				F7660A6B1A4F6B5C00F0A9E7 /* ArtistSearchController.m in Sources */,
+				F79992691A520E2400D17464 /* ArtistTrackController.m in Sources */,
 				F75357081A4F8C3700AD348B /* ArtistList.m in Sources */,
 				F753570B1A50570A00AD348B /* ArtistDetailController.m in Sources */,
 				74EF911D1A40343C0044F2BE /* AppDelegate.m in Sources */,

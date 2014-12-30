@@ -54,8 +54,6 @@ static NSString *CellIdentifier = @"CellIdentifier";
 // -- Number of cells --
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     
-    NSLog(@"size asked : %lu", (unsigned long)[self.artistsList.artists count]);
-    
     if(self.artistsList.artists)
         return [self.artistsList.artists count];
     else
@@ -89,12 +87,8 @@ static NSString *CellIdentifier = @"CellIdentifier";
 }
 
 // -- Cell selected --
-- (void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath {
-    
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [self performSegueWithIdentifier:@"showArtist" sender:self.artistsList.artists[indexPath.row]];
-    
-    //ArtistDetailController *controller = [[ArtistDetailController alloc] init];
-    //[self.navigationController pushViewController:controller animated:YES];
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
