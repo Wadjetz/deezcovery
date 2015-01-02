@@ -31,24 +31,14 @@
             NSLog(@"Error loading image");
         }
     });
-    NSLog(@"hello");
-    NSLog(@"hello");
-    NSLog(@"hello");
-    NSLog(@"hello");
-    NSLog(@"hello");
-    NSLog(@"hello");
     
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
 }
+
 - (IBAction)showTrackList:(id)sender {
-    NSLog(@"hello");
-    [self performSegueWithIdentifier:@"showTracklist" sender:self.artist];
-}
-- (IBAction)dfgbndfgsn:(id)sender {
-    NSLog(@"hello");
     [self performSegueWithIdentifier:@"showTracklist" sender:self.artist];
 }
 
@@ -58,9 +48,6 @@
         ArtistTrackController *controller = segue.destinationViewController;
         controller.artist = sender;
     }
-}
-- (IBAction)test:(id)sender {
-    NSLog(@"hello");
 }
 
 @end

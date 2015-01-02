@@ -7,16 +7,6 @@
         <!--Recherche d'artistes-->
         <scene sceneID="yJ2-el-9Ie">
             <objects>
-                <searchDisplayController id="6c0-10-LQR">
-                    <connections>
-                        <outlet property="delegate" destination="Vpw-Do-4sE" id="9FE-3V-C79"/>
-                        <outlet property="searchBar" destination="f6a-bv-ZbJ" id="9IG-ay-hPP"/>
-                        <outlet property="searchContentsController" destination="Vpw-Do-4sE" id="kO5-vs-EMC"/>
-                        <outlet property="searchResultsDataSource" destination="Vpw-Do-4sE" id="c1N-xy-w9i"/>
-                        <outlet property="searchResultsDelegate" destination="Vpw-Do-4sE" id="uyj-sA-6b7"/>
-                    </connections>
-                </searchDisplayController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="KWG-JB-T7F" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <tableViewController id="Vpw-Do-4sE" customClass="ArtistSearchController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="Y8W-AC-b9Q">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
@@ -52,6 +42,16 @@
                         <outlet property="searchDisplayController" destination="6c0-10-LQR" id="LAo-tD-afE"/>
                     </connections>
                 </tableViewController>
+                <searchDisplayController id="6c0-10-LQR">
+                    <connections>
+                        <outlet property="delegate" destination="Vpw-Do-4sE" id="9FE-3V-C79"/>
+                        <outlet property="searchBar" destination="f6a-bv-ZbJ" id="9IG-ay-hPP"/>
+                        <outlet property="searchContentsController" destination="Vpw-Do-4sE" id="kO5-vs-EMC"/>
+                        <outlet property="searchResultsDataSource" destination="Vpw-Do-4sE" id="c1N-xy-w9i"/>
+                        <outlet property="searchResultsDelegate" destination="Vpw-Do-4sE" id="uyj-sA-6b7"/>
+                    </connections>
+                </searchDisplayController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="KWG-JB-T7F" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="731" y="-257"/>
         </scene>
@@ -164,6 +164,14 @@
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="aiV-Sf-Iyz" id="ve7-zg-p2G">
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uXD-2h-xDR">
+                                            <rect key="frame" x="274" y="5" width="46" height="30"/>
+                                            <state key="normal" title=">">
+                                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                            </state>
+                                        </button>
+                                    </subviews>
                                 </tableViewCellContentView>
                             </tableViewCell>
                         </prototypes>
@@ -179,7 +187,15 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="f5b-rp-hsg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1566" y="-257"/>
+            <point key="canvasLocation" x="1566" y="-258"/>
+        </scene>
+        <!--AV Player View Controller-->
+        <scene sceneID="W4f-Nu-ihB">
+            <objects>
+                <avPlayerViewController videoGravity="AVLayerVideoGravityResizeAspect" id="ZkE-1X-Hqy" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="a3g-yp-g64" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1955" y="-257"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Lm2-ZS-gKB">

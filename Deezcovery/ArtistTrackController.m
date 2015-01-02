@@ -8,6 +8,13 @@
 
 #import "ArtistTrackController.h"
 
+@interface ArtistTrackController()
+
+@property AVAudioPlayer *player;
+@property long playingTrack;
+
+@end
+
 @implementation ArtistTrackController
 
 // -- View of a cell --
@@ -48,7 +55,42 @@
     return NO;
 }
 
+// -- Cell selected --
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    if(self.playingTrack == indexPath.row) {
+        if(self.player.playing) {
+            [self.player stop];
+            NSLog(@"Stopping music");
+        } else {
+            [self.player play];
+            NSLog(@"Resuming music");
+        }
+    } else {
+        self.playingTrack = indexPath.row;
+    
+        // Stop the old player
+        if(self.player) {
+            [self.player stop];
+        }
+    
+        // Create a newe player
+        NSURL *url = [[NSURL alloc] initWithString:self.tracks[indexPath.row][@"preview"]];
+        NSData *sound = [NSData dataWithContentsOfURL:url];
+        
+        self.player = [[AVAudioPlayer alloc] initWithData:sound error:nil];
+        //self.player.delegate = self;
+    
+        [self.player play];
+        NSLog(@"Starting playing music");
+    }
+}
+
+
+
 - (void)viewDidLoad {
+    
+    self.playingTrack = -1;
     
     // Artist's tracks
     dispatch_async(dispatch_get_global_queue(0, 0), ^{
