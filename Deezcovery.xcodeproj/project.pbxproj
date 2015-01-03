@@ -18,6 +18,9 @@
 		F753570B1A50570A00AD348B /* ArtistDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = F753570A1A50570A00AD348B /* ArtistDetailController.m */; };
 		F7660A661A4EF8F900F0A9E7 /* Artist.m in Sources */ = {isa = PBXBuildFile; fileRef = F7660A651A4EF8F900F0A9E7 /* Artist.m */; };
 		F7660A6B1A4F6B5C00F0A9E7 /* ArtistSearchController.m in Sources */ = {isa = PBXBuildFile; fileRef = F7660A6A1A4F6B5C00F0A9E7 /* ArtistSearchController.m */; };
+		F78A9F231A575B2300911F2D /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = F78A9F221A575B2300911F2D /* libsqlite3.dylib */; };
+		F78A9F271A575BBB00911F2D /* DBManager.m in Sources */ = {isa = PBXBuildFile; fileRef = F78A9F261A575BBB00911F2D /* DBManager.m */; };
+		F78A9F871A5765DF00911F2D /* database.sql in Resources */ = {isa = PBXBuildFile; fileRef = F78A9F861A5765DF00911F2D /* database.sql */; };
 		F79992691A520E2400D17464 /* ArtistTrackController.m in Sources */ = {isa = PBXBuildFile; fileRef = F79992681A520E2400D17464 /* ArtistTrackController.m */; };
 /* End PBXBuildFile section */
 
@@ -54,6 +57,10 @@
 		F7660A681A4F5BEC00F0A9E7 /* DeezerApi.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DeezerApi.h; sourceTree = "<group>"; };
 		F7660A691A4F6B5C00F0A9E7 /* ArtistSearchController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ArtistSearchController.h; sourceTree = "<group>"; };
 		F7660A6A1A4F6B5C00F0A9E7 /* ArtistSearchController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ArtistSearchController.m; sourceTree = "<group>"; };
+		F78A9F221A575B2300911F2D /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
+		F78A9F251A575BBB00911F2D /* DBManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBManager.h; sourceTree = "<group>"; };
+		F78A9F261A575BBB00911F2D /* DBManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBManager.m; sourceTree = "<group>"; };
+		F78A9F861A5765DF00911F2D /* database.sql */ = {isa = PBXFileReference; lastKnownFileType = file; path = database.sql; sourceTree = "<group>"; };
 		F79992671A520E2400D17464 /* ArtistTrackController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ArtistTrackController.h; sourceTree = "<group>"; };
 		F79992681A520E2400D17464 /* ArtistTrackController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ArtistTrackController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -63,6 +70,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F78A9F231A575B2300911F2D /* libsqlite3.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -79,6 +87,7 @@
 		74EF910B1A40343C0044F2BE = {
 			isa = PBXGroup;
 			children = (
+				F78A9F221A575B2300911F2D /* libsqlite3.dylib */,
 				74EF91161A40343C0044F2BE /* Deezcovery */,
 				74EF91301A40343C0044F2BE /* DeezcoveryTests */,
 				74EF91151A40343C0044F2BE /* Products */,
@@ -97,22 +106,18 @@
 		74EF91161A40343C0044F2BE /* Deezcovery */ = {
 			isa = PBXGroup;
 			children = (
-				74EF911B1A40343C0044F2BE /* AppDelegate.h */,
-				74EF911C1A40343C0044F2BE /* AppDelegate.m */,
-				74EF911E1A40343C0044F2BE /* ViewController.h */,
-				74EF911F1A40343C0044F2BE /* ViewController.m */,
+				F78A9F861A5765DF00911F2D /* database.sql */,
+				F78A9F241A575B3D00911F2D /* Controllers */,
 				74EF91211A40343C0044F2BE /* Main.storyboard */,
 				74EF91241A40343C0044F2BE /* Images.xcassets */,
 				74EF91261A40343C0044F2BE /* LaunchScreen.xib */,
 				74EF91171A40343C0044F2BE /* Supporting Files */,
 				F7660A671A4EF90900F0A9E7 /* Models */,
 				F7660A681A4F5BEC00F0A9E7 /* DeezerApi.h */,
-				F79992671A520E2400D17464 /* ArtistTrackController.h */,
-				F79992681A520E2400D17464 /* ArtistTrackController.m */,
-				F7660A691A4F6B5C00F0A9E7 /* ArtistSearchController.h */,
-				F7660A6A1A4F6B5C00F0A9E7 /* ArtistSearchController.m */,
-				F75357091A50570A00AD348B /* ArtistDetailController.h */,
-				F753570A1A50570A00AD348B /* ArtistDetailController.m */,
+				74EF911B1A40343C0044F2BE /* AppDelegate.h */,
+				74EF911C1A40343C0044F2BE /* AppDelegate.m */,
+				F78A9F251A575BBB00911F2D /* DBManager.h */,
+				F78A9F261A575BBB00911F2D /* DBManager.m */,
 			);
 			path = Deezcovery;
 			sourceTree = "<group>";
@@ -152,6 +157,21 @@
 				F75357071A4F8C3700AD348B /* ArtistList.m */,
 			);
 			name = Models;
+			sourceTree = "<group>";
+		};
+		F78A9F241A575B3D00911F2D /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				74EF911E1A40343C0044F2BE /* ViewController.h */,
+				74EF911F1A40343C0044F2BE /* ViewController.m */,
+				F79992671A520E2400D17464 /* ArtistTrackController.h */,
+				F79992681A520E2400D17464 /* ArtistTrackController.m */,
+				F7660A691A4F6B5C00F0A9E7 /* ArtistSearchController.h */,
+				F7660A6A1A4F6B5C00F0A9E7 /* ArtistSearchController.m */,
+				F75357091A50570A00AD348B /* ArtistDetailController.h */,
+				F753570A1A50570A00AD348B /* ArtistDetailController.m */,
+			);
+			name = Controllers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -236,6 +256,7 @@
 			files = (
 				74EF91231A40343C0044F2BE /* Main.storyboard in Resources */,
 				74EF91281A40343C0044F2BE /* LaunchScreen.xib in Resources */,
+				F78A9F871A5765DF00911F2D /* database.sql in Resources */,
 				74EF91251A40343C0044F2BE /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -257,6 +278,7 @@
 				74EF91201A40343C0044F2BE /* ViewController.m in Sources */,
 				F7660A6B1A4F6B5C00F0A9E7 /* ArtistSearchController.m in Sources */,
 				F79992691A520E2400D17464 /* ArtistTrackController.m in Sources */,
+				F78A9F271A575BBB00911F2D /* DBManager.m in Sources */,
 				F75357081A4F8C3700AD348B /* ArtistList.m in Sources */,
 				F753570B1A50570A00AD348B /* ArtistDetailController.m in Sources */,
 				74EF911D1A40343C0044F2BE /* AppDelegate.m in Sources */,
