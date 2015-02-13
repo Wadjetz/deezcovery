@@ -14,10 +14,11 @@
 @interface ArtistSearchController ()
 
 @property (nonatomic, strong)UISearchDisplayController *searchController;
-@property (strong)ArtistList *artistsList;
+@property (strong)NSMutableArray *artistsList;
 @property (strong)UITableView *resultsView;
 
 @property NSOperationQueue *queue;
+
 
 @end
 
@@ -34,7 +35,7 @@ static NSString *CellIdentifier = @"CellIdentifier";
     self.searchController.searchResultsDataSource = self;
     
     // Init model
-    self.artistsList = [[ArtistList alloc] init];
+    self.artistsList = [[NSMutableArray alloc] init];
     
     // The event queue
     self.queue = [[NSOperationQueue alloc] init];
@@ -54,8 +55,8 @@ static NSString *CellIdentifier = @"CellIdentifier";
 // -- Number of cells --
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     
-    if(self.artistsList.artists)
-        return [self.artistsList.artists count];
+    if(self.artistsList)
+        return [self.artistsList count];
     else
         return 0;
 }
@@ -65,13 +66,15 @@ static NSString *CellIdentifier = @"CellIdentifier";
     
     // Create a new cell
     UITableViewCell *cell = [[UITableViewCell alloc] init];
+    Artist* artist = self.artistsList[indexPath.row];
     
-    Artist* artist = self.artistsList.artists[indexPath.row];
-    
-    // Configure cell
-    cell.textLabel.text = [[NSString alloc] initWithFormat:@"%@ - (%i fans)", artist.name, artist.nb_fan];
-    
-    //NSLog(@"Called refresh");
+    if(indexPath.row > 0)
+        cell.textLabel.text = [[NSString alloc] initWithFormat:@"%@ - (%i fans)", artist.name, artist.nb_fan];
+    else {
+        cell.textLabel.text = [[NSString alloc] initWithFormat:@"Similar to %@ :", artist.name];
+        cell.textLabel.font = [UIFont boldSystemFontOfSize:18.0];
+        cell.backgroundColor = [UIColor lightGrayColor];
+    }
     
     return cell;
 }
@@ -88,7 +91,7 @@ static NSString *CellIdentifier = @"CellIdentifier";
 
 // -- Cell selected --
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    [self performSegueWithIdentifier:@"showArtist" sender:self.artistsList.artists[indexPath.row]];
+    [self performSegueWithIdentifier:@"showArtist" sender:self.artistsList[indexPath.row]];
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
@@ -105,6 +108,43 @@ static NSString *CellIdentifier = @"CellIdentifier";
     self.resultsView = tableView;
 }
 
+-(void)searchArtist:(NSString*) artistName {
+    
+}
+
+-(void)searchSimilarArtist:(NSDictionary*) artist {
+    
+    // The URL request
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
+    [request setHTTPMethod:@"GET"];
+    [request setURL:[NSURL URLWithString:[[NSString alloc] initWithFormat:@"%@/artist/%@/related", DEEZER_ENDPOINT, artist[@"id"]]]];
+    
+    // The block called
+    [NSURLConnection sendAsynchronousRequest:request queue:self.queue completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
+        
+        // If no errors
+        if(!connectionError) {
+            // Get the first artist (if any)
+            NSDictionary *results = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:nil];
+            if([results objectForKey:@"data"]) {
+                if([self.artistsList count] > 0)
+                    [self.artistsList removeAllObjects];
+                
+                [self.artistsList addObject:[[Artist alloc] initWithDictionary:artist]];
+                for(int i = 0; i < [results[@"data"] count]; i++)
+                    [self.artistsList addObject:[[Artist alloc] initWithDictionary:[results[@"data"] objectAtIndex:i]]];
+                
+                [self reloadResults];
+            }
+        } else {
+            // Error, empty and log
+            [self.artistsList removeAllObjects];
+            NSLog(@"Error : %@", connectionError);
+        }
+    }];
+}
+
+
 -(BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchString:(NSString *)searchString {
     
     // Cancel all the pending searchs
@@ -112,7 +152,7 @@ static NSString *CellIdentifier = @"CellIdentifier";
     
     // Nothing to search
     if(self.searchBar.text.length <= 0) {
-        [self.artistsList.artists removeAllObjects];
+        [self.artistsList removeAllObjects];
         
         return TRUE;
     }
@@ -127,18 +167,22 @@ static NSString *CellIdentifier = @"CellIdentifier";
         
         // If no errors
         if(!connectionError) {
-            // Fill the artists list with the results
+            // Get the first artist (if any)
             NSDictionary *results = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:nil];
             if([results objectForKey:@"data"]) {
-                [self.artistsList fillWithArray:(NSArray*)results[@"data"]];
+                
+                // If any artist
+                NSArray *data = [results objectForKey:@"data"];
+                if(data.count > 0)  {
+                    // Get similar artists
+                    [self searchSimilarArtist:data[0]];
+                }
             }
         } else {
             // Error, empty and log
-            [self.artistsList.artists removeAllObjects];
+            [self.artistsList removeAllObjects];
             NSLog(@"Error : %@", connectionError);
         }
-        
-        [self reloadResults];
     }];
     
     return YES;
