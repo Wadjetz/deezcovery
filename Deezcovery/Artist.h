@@ -27,8 +27,4 @@
 // -- Prototypes --
 - (Artist *)initWithDictionary:(NSDictionary *) dictionary;
 
-- (NSString *)getPhotoLink;
-- (NSString *)getTracksLink;
-- (NSString *)getArtistLink;
-
 @end

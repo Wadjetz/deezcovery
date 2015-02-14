@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "Artist.h"
+#import "Artist+DeezerAPI.h"
 
 @interface ArtistDetailController : UIViewController
 

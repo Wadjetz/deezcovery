@@ -9,7 +9,6 @@
 #import <Foundation/Foundation.h>
 #import <sqlite3.h>
 
-#import "ArtistList.h"
 #import "Artist.h"
 
 @interface DBManager : NSObject
@@ -20,7 +19,6 @@
 
 -(instancetype) initWithDatabaseFilename:(NSString*) dbFilename;
 
--(ArtistList*) loadArtistsFromDBfrom:(int) from size:(int)size;
 -(Artist*) loadArtistFromDB:(int) ID;
 -(void) saveArtist:(Artist*) artist;
 -(void) deleteArtist:(Artist*) artist;

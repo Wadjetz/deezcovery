@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		749F4B0C1A8FC93D00EA02E3 /* Artist+DeezerAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 749F4B0B1A8FC93D00EA02E3 /* Artist+DeezerAPI.m */; };
 		74EF911A1A40343C0044F2BE /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 74EF91191A40343C0044F2BE /* main.m */; };
 		74EF911D1A40343C0044F2BE /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 74EF911C1A40343C0044F2BE /* AppDelegate.m */; };
 		74EF91201A40343C0044F2BE /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74EF911F1A40343C0044F2BE /* ViewController.m */; };
@@ -34,6 +35,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		749F4B0A1A8FC93D00EA02E3 /* Artist+DeezerAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Artist+DeezerAPI.h"; sourceTree = "<group>"; };
+		749F4B0B1A8FC93D00EA02E3 /* Artist+DeezerAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Artist+DeezerAPI.m"; sourceTree = "<group>"; };
 		74EF91141A40343C0044F2BE /* Deezcovery.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Deezcovery.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		74EF91181A40343C0044F2BE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		74EF91191A40343C0044F2BE /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -81,6 +84,25 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		749F4B081A8FC7EF00EA02E3 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				F7660A681A4F5BEC00F0A9E7 /* DeezerApi.h */,
+				749F4B0A1A8FC93D00EA02E3 /* Artist+DeezerAPI.h */,
+				749F4B0B1A8FC93D00EA02E3 /* Artist+DeezerAPI.m */,
+			);
+			name = Services;
+			sourceTree = "<group>";
+		};
+		749F4B091A8FC83600EA02E3 /* Persistence */ = {
+			isa = PBXGroup;
+			children = (
+				F78A9F251A575BBB00911F2D /* DBManager.h */,
+				F78A9F261A575BBB00911F2D /* DBManager.m */,
+			);
+			name = Persistence;
+			sourceTree = "<group>";
+		};
 		74EF910B1A40343C0044F2BE = {
 			isa = PBXGroup;
 			children = (
@@ -103,6 +125,7 @@
 		74EF91161A40343C0044F2BE /* Deezcovery */ = {
 			isa = PBXGroup;
 			children = (
+				749F4B081A8FC7EF00EA02E3 /* Services */,
 				F78A9F861A5765DF00911F2D /* database.sql */,
 				F78A9F241A575B3D00911F2D /* Controllers */,
 				74EF91211A40343C0044F2BE /* Main.storyboard */,
@@ -110,11 +133,8 @@
 				74EF91261A40343C0044F2BE /* LaunchScreen.xib */,
 				74EF91171A40343C0044F2BE /* Supporting Files */,
 				F7660A671A4EF90900F0A9E7 /* Models */,
-				F7660A681A4F5BEC00F0A9E7 /* DeezerApi.h */,
 				74EF911B1A40343C0044F2BE /* AppDelegate.h */,
 				74EF911C1A40343C0044F2BE /* AppDelegate.m */,
-				F78A9F251A575BBB00911F2D /* DBManager.h */,
-				F78A9F261A575BBB00911F2D /* DBManager.m */,
 			);
 			path = Deezcovery;
 			sourceTree = "<group>";
@@ -148,6 +168,7 @@
 		F7660A671A4EF90900F0A9E7 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				749F4B091A8FC83600EA02E3 /* Persistence */,
 				F7660A641A4EF8F900F0A9E7 /* Artist.h */,
 				F7660A651A4EF8F900F0A9E7 /* Artist.m */,
 			);
@@ -270,6 +291,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				749F4B0C1A8FC93D00EA02E3 /* Artist+DeezerAPI.m in Sources */,
 				74EF91201A40343C0044F2BE /* ViewController.m in Sources */,
 				F7660A6B1A4F6B5C00F0A9E7 /* ArtistSearchController.m in Sources */,
 				F79992691A520E2400D17464 /* ArtistTrackController.m in Sources */,

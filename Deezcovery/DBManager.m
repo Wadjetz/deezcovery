@@ -147,13 +147,7 @@
     NSLog(@"Error SQLite : %s", sqlite3_errmsg(sqliteDatabase));
 }
 
-// Load all the artists form the database
--(ArtistList*) loadArtistsFromDBfrom:(int) from size:(int)size {
-    
-    
-    
-    return nil;
-}
+
 
 // Load an artist form the database with its ID
 -(Artist*) loadArtistFromDB:(int) ID {
