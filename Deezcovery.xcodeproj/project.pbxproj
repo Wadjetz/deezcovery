@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		749F4B0C1A8FC93D00EA02E3 /* Artist+DeezerAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 749F4B0B1A8FC93D00EA02E3 /* Artist+DeezerAPI.m */; };
+		749F4B0E1A8FCB3500EA02E3 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 749F4B0D1A8FCB3500EA02E3 /* CoreData.framework */; };
+		749F4B111A8FCB4700EA02E3 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 749F4B0F1A8FCB4700EA02E3 /* Model.xcdatamodeld */; };
+		749F4B141A8FCBD900EA02E3 /* Track.m in Sources */ = {isa = PBXBuildFile; fileRef = 749F4B131A8FCBD900EA02E3 /* Track.m */; };
 		74EF911A1A40343C0044F2BE /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 74EF91191A40343C0044F2BE /* main.m */; };
 		74EF911D1A40343C0044F2BE /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 74EF911C1A40343C0044F2BE /* AppDelegate.m */; };
 		74EF91201A40343C0044F2BE /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74EF911F1A40343C0044F2BE /* ViewController.m */; };
@@ -37,6 +40,10 @@
 /* Begin PBXFileReference section */
 		749F4B0A1A8FC93D00EA02E3 /* Artist+DeezerAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Artist+DeezerAPI.h"; sourceTree = "<group>"; };
 		749F4B0B1A8FC93D00EA02E3 /* Artist+DeezerAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Artist+DeezerAPI.m"; sourceTree = "<group>"; };
+		749F4B0D1A8FCB3500EA02E3 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		749F4B101A8FCB4700EA02E3 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
+		749F4B121A8FCBD900EA02E3 /* Track.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Track.h; sourceTree = "<group>"; };
+		749F4B131A8FCBD900EA02E3 /* Track.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Track.m; sourceTree = "<group>"; };
 		74EF91141A40343C0044F2BE /* Deezcovery.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Deezcovery.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		74EF91181A40343C0044F2BE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		74EF91191A40343C0044F2BE /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -70,6 +77,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				749F4B0E1A8FCB3500EA02E3 /* CoreData.framework in Frameworks */,
 				F78A9F231A575B2300911F2D /* libsqlite3.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -106,6 +114,7 @@
 		74EF910B1A40343C0044F2BE = {
 			isa = PBXGroup;
 			children = (
+				749F4B0D1A8FCB3500EA02E3 /* CoreData.framework */,
 				F78A9F221A575B2300911F2D /* libsqlite3.dylib */,
 				74EF91161A40343C0044F2BE /* Deezcovery */,
 				74EF91301A40343C0044F2BE /* DeezcoveryTests */,
@@ -125,6 +134,7 @@
 		74EF91161A40343C0044F2BE /* Deezcovery */ = {
 			isa = PBXGroup;
 			children = (
+				749F4B0F1A8FCB4700EA02E3 /* Model.xcdatamodeld */,
 				749F4B081A8FC7EF00EA02E3 /* Services */,
 				F78A9F861A5765DF00911F2D /* database.sql */,
 				F78A9F241A575B3D00911F2D /* Controllers */,
@@ -171,6 +181,8 @@
 				749F4B091A8FC83600EA02E3 /* Persistence */,
 				F7660A641A4EF8F900F0A9E7 /* Artist.h */,
 				F7660A651A4EF8F900F0A9E7 /* Artist.m */,
+				749F4B121A8FCBD900EA02E3 /* Track.h */,
+				749F4B131A8FCBD900EA02E3 /* Track.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -294,10 +306,12 @@
 				749F4B0C1A8FC93D00EA02E3 /* Artist+DeezerAPI.m in Sources */,
 				74EF91201A40343C0044F2BE /* ViewController.m in Sources */,
 				F7660A6B1A4F6B5C00F0A9E7 /* ArtistSearchController.m in Sources */,
+				749F4B141A8FCBD900EA02E3 /* Track.m in Sources */,
 				F79992691A520E2400D17464 /* ArtistTrackController.m in Sources */,
 				F78A9F271A575BBB00911F2D /* DBManager.m in Sources */,
 				F753570B1A50570A00AD348B /* ArtistDetailController.m in Sources */,
 				74EF911D1A40343C0044F2BE /* AppDelegate.m in Sources */,
+				749F4B111A8FCB4700EA02E3 /* Model.xcdatamodeld in Sources */,
 				F7660A661A4EF8F900F0A9E7 /* Artist.m in Sources */,
 				74EF911A1A40343C0044F2BE /* main.m in Sources */,
 			);
@@ -502,6 +516,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		749F4B0F1A8FCB4700EA02E3 /* Model.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				749F4B101A8FCB4700EA02E3 /* Model.xcdatamodel */,
+			);
+			currentVersion = 749F4B101A8FCB4700EA02E3 /* Model.xcdatamodel */;
+			path = Model.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 74EF910C1A40343C0044F2BE /* Project object */;
 }
