@@ -18,16 +18,16 @@
     
     if(dictionary) {
         if([dictionary objectForKey:@"id"])
-            self.artist_id = (int)[(NSNumber*)dictionary[@"id"] integerValue];
+            self.artist_id = (NSNumber*)dictionary[@"id"];
         
         if([dictionary objectForKey:@"name"])
             self.name = (NSString*)dictionary[@"name"];
         
         if([dictionary objectForKey:@"nb_album"])
-            self.nb_album = (int)[(NSNumber*)dictionary[@"nb_album"] integerValue];
+            self.nb_album = (NSNumber*)dictionary[@"nb_album"];
         
         if([dictionary objectForKey:@"nb_fan"])
-            self.nb_fan = (int)[(NSNumber*)dictionary[@"nb_fan"] integerValue];
+            self.nb_fan = (NSNumber*)dictionary[@"nb_fan"];
     }
     
     return self;

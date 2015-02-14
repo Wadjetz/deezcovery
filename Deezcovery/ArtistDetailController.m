@@ -16,8 +16,8 @@
     
     // Artist's infos
     self.artistName.text = self.artist.name;
-    self.nbFans.text = [[NSString alloc] initWithFormat:@"%i", self.artist.nb_fan];
-    self.nbAlbums.text = [[NSString alloc] initWithFormat:@"%i", self.artist.nb_album];
+    self.nbFans.text = [[NSString alloc] initWithFormat:@"%@", self.artist.nb_fan];
+    self.nbAlbums.text = [[NSString alloc] initWithFormat:@"%@", self.artist.nb_album];
     
     // Artist's image
     dispatch_async(dispatch_get_global_queue(0, 0), ^{

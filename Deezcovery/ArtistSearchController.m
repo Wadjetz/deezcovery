@@ -69,7 +69,7 @@ static NSString *CellIdentifier = @"CellIdentifier";
     Artist* artist = self.artistsList[indexPath.row];
     
     if(indexPath.row > 0)
-        cell.textLabel.text = [[NSString alloc] initWithFormat:@"%@ - (%i fans)", artist.name, artist.nb_fan];
+        cell.textLabel.text = [[NSString alloc] initWithFormat:@"%@ - (%@ fans)", artist.name, artist.nb_fan];
     else {
         cell.textLabel.text = [[NSString alloc] initWithFormat:@"Similar to %@ :", artist.name];
         cell.textLabel.font = [UIFont boldSystemFontOfSize:18.0];

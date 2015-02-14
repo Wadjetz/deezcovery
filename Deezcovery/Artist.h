@@ -13,16 +13,16 @@
 
 // -- Properties --
 // The artist id, used to get its informations with the deezer api
-@property (nonatomic) int artist_id;
+@property (nonatomic) NSNumber *artist_id;
 
 // The artist's name
 @property (nonatomic, strong) NSString *name;
 
 // The number of albums the artist has
-@property (nonatomic) int nb_album;
+@property (nonatomic) NSNumber *nb_album;
 
 // The number of fans the artist has
-@property (nonatomic) int nb_fan;
+@property (nonatomic) NSNumber *nb_fan;
 
 // -- Prototypes --
 - (Artist *)initWithDictionary:(NSDictionary *) dictionary;

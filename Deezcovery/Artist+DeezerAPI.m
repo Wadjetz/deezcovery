@@ -12,17 +12,17 @@
 
 // Return the artist's photo link
 - (NSString *)getPhotoLink {
-    return [[NSString alloc]initWithFormat:@"%@/artist/%d/image?size=big", DEEZER_ENDPOINT, self.artist_id];
+    return [[NSString alloc]initWithFormat:@"%@/artist/%d/image?size=big", DEEZER_ENDPOINT, (int)[self.artist_id integerValue]];
 }
 
 // Return the artist's top tracks link
 - (NSString *)getTracksLink {
-    return [[NSString alloc]initWithFormat:@"%@/artist/%d/top", DEEZER_ENDPOINT, self.artist_id];
+    return [[NSString alloc]initWithFormat:@"%@/artist/%d/top", DEEZER_ENDPOINT, (int)[self.artist_id integerValue]];
 }
 
 // Return the artist's deezer link
 - (NSString *)getArtistLink {
-    return [[NSString alloc]initWithFormat:@"%@/artist/%d", DEEZER_ENDPOINT, self.artist_id];
+    return [[NSString alloc]initWithFormat:@"%@/artist/%d", DEEZER_ENDPOINT, (int)[self.artist_id integerValue]];
 }
 
 @end
