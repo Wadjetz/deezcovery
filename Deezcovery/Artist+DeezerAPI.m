@@ -11,18 +11,18 @@
 @implementation Artist (DeezerAPI)
 
 // Return the artist's photo link
-- (NSString *)getPhotoLink {
-    return [[NSString alloc]initWithFormat:@"%@/artist/%d/image?size=big", DEEZER_ENDPOINT, (int)[self.artist_id integerValue]];
++ (NSString *)getPhotoLink:(NSNumber*)artist_id {
+    return [[NSString alloc]initWithFormat:@"%@/artist/%@/image?size=big", DEEZER_ENDPOINT, artist_id];
 }
 
 // Return the artist's top tracks link
-- (NSString *)getTracksLink {
-    return [[NSString alloc]initWithFormat:@"%@/artist/%d/top", DEEZER_ENDPOINT, (int)[self.artist_id integerValue]];
++ (NSString *)getTracksLink:(NSNumber*)artist_id {
+    return [[NSString alloc]initWithFormat:@"%@/artist/%@/top", DEEZER_ENDPOINT, artist_id];
 }
 
 // Return the artist's deezer link
-- (NSString *)getArtistLink {
-    return [[NSString alloc]initWithFormat:@"%@/artist/%d", DEEZER_ENDPOINT, (int)[self.artist_id integerValue]];
++ (NSString *)getArtistLink:(NSNumber*)artist_id {
+    return [[NSString alloc]initWithFormat:@"%@/artist/%@", DEEZER_ENDPOINT, artist_id];
 }
 
 @end

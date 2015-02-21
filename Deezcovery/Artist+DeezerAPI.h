@@ -7,11 +7,12 @@
 //
 
 #import "Artist.h"
+#import "DeezerApi.h"
 
 @interface Artist (DeezerAPI)
 
-- (NSString *)getPhotoLink;
-- (NSString *)getTracksLink;
-- (NSString *)getArtistLink;
++ (NSString *)getPhotoLink:(NSNumber*)artist_id;
++ (NSString *)getTracksLink:(NSNumber*)artist_id;
++ (NSString *)getArtistLink:(NSNumber*)artist_id;
 
 @end

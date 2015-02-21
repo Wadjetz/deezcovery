@@ -9,7 +9,9 @@
 #import "ArtistSearchController.h"
 #import "Artist.h"
 #import "Artist+DeezerAPI.h"
+#import "Artist+JsonSerializer.h"
 #import "ArtistDetailController.h"
+#import "DeezerApi.h"
 
 @interface ArtistSearchController ()
 
@@ -98,6 +100,7 @@ static NSString *CellIdentifier = @"CellIdentifier";
     // Prepare the segue, set the sended artist
     if([segue.identifier isEqualToString:@"showArtist"]) {
         ArtistDetailController *controller = segue.destinationViewController;
+        NSLog(@"%@", sender);
         controller.artist = sender;
     }
 }
@@ -130,9 +133,9 @@ static NSString *CellIdentifier = @"CellIdentifier";
                 if([self.artistsList count] > 0)
                     [self.artistsList removeAllObjects];
                 
-                [self.artistsList addObject:[[Artist alloc] initWithDictionary:artist]];
+                [self.artistsList addObject:[Artist artistFromJson:artist]];
                 for(int i = 0; i < [results[@"data"] count]; i++)
-                    [self.artistsList addObject:[[Artist alloc] initWithDictionary:[results[@"data"] objectAtIndex:i]]];
+                    [self.artistsList addObject:[Artist artistFromJson:[results[@"data"] objectAtIndex:i]]];
                 
                 [self reloadResults];
             }

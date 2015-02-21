@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		745E1CAC1A99103700267653 /* Artist+JsonSerializer.m in Sources */ = {isa = PBXBuildFile; fileRef = 745E1CAB1A99103700267653 /* Artist+JsonSerializer.m */; };
 		749F4B0C1A8FC93D00EA02E3 /* Artist+DeezerAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 749F4B0B1A8FC93D00EA02E3 /* Artist+DeezerAPI.m */; };
 		749F4B0E1A8FCB3500EA02E3 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 749F4B0D1A8FCB3500EA02E3 /* CoreData.framework */; };
 		749F4B111A8FCB4700EA02E3 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 749F4B0F1A8FCB4700EA02E3 /* Model.xcdatamodeld */; };
@@ -38,6 +39,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		745E1CAA1A99103700267653 /* Artist+JsonSerializer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Artist+JsonSerializer.h"; sourceTree = "<group>"; };
+		745E1CAB1A99103700267653 /* Artist+JsonSerializer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Artist+JsonSerializer.m"; sourceTree = "<group>"; };
 		749F4B0A1A8FC93D00EA02E3 /* Artist+DeezerAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Artist+DeezerAPI.h"; sourceTree = "<group>"; };
 		749F4B0B1A8FC93D00EA02E3 /* Artist+DeezerAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Artist+DeezerAPI.m"; sourceTree = "<group>"; };
 		749F4B0D1A8FCB3500EA02E3 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
@@ -183,6 +186,8 @@
 				F7660A651A4EF8F900F0A9E7 /* Artist.m */,
 				749F4B121A8FCBD900EA02E3 /* Track.h */,
 				749F4B131A8FCBD900EA02E3 /* Track.m */,
+				745E1CAA1A99103700267653 /* Artist+JsonSerializer.h */,
+				745E1CAB1A99103700267653 /* Artist+JsonSerializer.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -303,6 +308,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				745E1CAC1A99103700267653 /* Artist+JsonSerializer.m in Sources */,
 				749F4B0C1A8FC93D00EA02E3 /* Artist+DeezerAPI.m in Sources */,
 				74EF91201A40343C0044F2BE /* ViewController.m in Sources */,
 				F7660A6B1A4F6B5C00F0A9E7 /* ArtistSearchController.m in Sources */,
