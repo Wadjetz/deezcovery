@@ -7,20 +7,21 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <sqlite3.h>
-
-#import "Artist.h"
+#import <CoreData/CoreData.h>
 
 @interface DBManager : NSObject
 
-@property (nonatomic, strong) NSMutableArray *arrColumnNames;
-@property (nonatomic) int affectedRows;
-@property (nonatomic) long long lastInsertedRowID;
++ (id)sharedInstance;
 
--(instancetype) initWithDatabaseFilename:(NSString*) dbFilename;
+- (void)deleteManagedObject:(NSManagedObject *)object;
 
--(Artist*) loadArtistFromDB:(int) ID;
--(void) saveArtist:(Artist*) artist;
--(void) deleteArtist:(Artist*) artist;
+- (id)createManagedObjectWithName:(NSString *)entityName;
+- (id)createManagedObjectWithClass:(Class)entityClass;
+- (id)createTemporaryObjectWithClass:(Class)entityClass;
+
+- (BOOL)persistData;
+- (void)refreshObject:(NSManagedObject *)managedObject mergeChanges:(BOOL)flag;
+
+//- (NSArray *)fetchArtists;
 
 @end
