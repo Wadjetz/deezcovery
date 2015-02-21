@@ -1,15 +1,15 @@
 //
-//  Artist+DeezerAPI.h
+//  DeezerService.h
 //  Deezcovery
 //
-//  Created by Egor Berezovskiy on 14/02/15.
+//  Created by Egor Berezovskiy on 21/02/15.
 //  Copyright (c) 2015 ESGIAL1-2014. All rights reserved.
 //
 
-#import "Artist.h"
-#import "DeezerApi.h"
+#import <Foundation/Foundation.h>
+#define DEEZER_ENDPOINT @"http://api.deezer.com"
 
-@interface Artist (DeezerAPI)
+@interface DeezerService : NSObject
 
 + (NSString *)getPhotoLink:(NSNumber*)artist_id;
 + (NSString *)getTracksLink:(NSNumber*)artist_id;

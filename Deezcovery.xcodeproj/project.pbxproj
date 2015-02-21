@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		745E1CAC1A99103700267653 /* Artist+JsonSerializer.m in Sources */ = {isa = PBXBuildFile; fileRef = 745E1CAB1A99103700267653 /* Artist+JsonSerializer.m */; };
-		749F4B0C1A8FC93D00EA02E3 /* Artist+DeezerAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 749F4B0B1A8FC93D00EA02E3 /* Artist+DeezerAPI.m */; };
+		745E1CAF1A9916B500267653 /* DeezerService.m in Sources */ = {isa = PBXBuildFile; fileRef = 745E1CAE1A9916B500267653 /* DeezerService.m */; };
 		749F4B0E1A8FCB3500EA02E3 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 749F4B0D1A8FCB3500EA02E3 /* CoreData.framework */; };
 		749F4B111A8FCB4700EA02E3 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 749F4B0F1A8FCB4700EA02E3 /* Model.xcdatamodeld */; };
 		749F4B141A8FCBD900EA02E3 /* Track.m in Sources */ = {isa = PBXBuildFile; fileRef = 749F4B131A8FCBD900EA02E3 /* Track.m */; };
@@ -41,8 +41,8 @@
 /* Begin PBXFileReference section */
 		745E1CAA1A99103700267653 /* Artist+JsonSerializer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Artist+JsonSerializer.h"; sourceTree = "<group>"; };
 		745E1CAB1A99103700267653 /* Artist+JsonSerializer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Artist+JsonSerializer.m"; sourceTree = "<group>"; };
-		749F4B0A1A8FC93D00EA02E3 /* Artist+DeezerAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Artist+DeezerAPI.h"; sourceTree = "<group>"; };
-		749F4B0B1A8FC93D00EA02E3 /* Artist+DeezerAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Artist+DeezerAPI.m"; sourceTree = "<group>"; };
+		745E1CAD1A9916B500267653 /* DeezerService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeezerService.h; sourceTree = "<group>"; };
+		745E1CAE1A9916B500267653 /* DeezerService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeezerService.m; sourceTree = "<group>"; };
 		749F4B0D1A8FCB3500EA02E3 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		749F4B101A8FCB4700EA02E3 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		749F4B121A8FCBD900EA02E3 /* Track.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Track.h; sourceTree = "<group>"; };
@@ -64,7 +64,6 @@
 		F753570A1A50570A00AD348B /* ArtistDetailController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ArtistDetailController.m; sourceTree = "<group>"; };
 		F7660A641A4EF8F900F0A9E7 /* Artist.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Artist.h; sourceTree = "<group>"; };
 		F7660A651A4EF8F900F0A9E7 /* Artist.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Artist.m; sourceTree = "<group>"; };
-		F7660A681A4F5BEC00F0A9E7 /* DeezerApi.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DeezerApi.h; sourceTree = "<group>"; };
 		F7660A691A4F6B5C00F0A9E7 /* ArtistSearchController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ArtistSearchController.h; sourceTree = "<group>"; };
 		F7660A6A1A4F6B5C00F0A9E7 /* ArtistSearchController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ArtistSearchController.m; sourceTree = "<group>"; };
 		F78A9F221A575B2300911F2D /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
@@ -98,9 +97,8 @@
 		749F4B081A8FC7EF00EA02E3 /* Services */ = {
 			isa = PBXGroup;
 			children = (
-				F7660A681A4F5BEC00F0A9E7 /* DeezerApi.h */,
-				749F4B0A1A8FC93D00EA02E3 /* Artist+DeezerAPI.h */,
-				749F4B0B1A8FC93D00EA02E3 /* Artist+DeezerAPI.m */,
+				745E1CAD1A9916B500267653 /* DeezerService.h */,
+				745E1CAE1A9916B500267653 /* DeezerService.m */,
 			);
 			name = Services;
 			sourceTree = "<group>";
@@ -309,11 +307,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				745E1CAC1A99103700267653 /* Artist+JsonSerializer.m in Sources */,
-				749F4B0C1A8FC93D00EA02E3 /* Artist+DeezerAPI.m in Sources */,
 				74EF91201A40343C0044F2BE /* ViewController.m in Sources */,
 				F7660A6B1A4F6B5C00F0A9E7 /* ArtistSearchController.m in Sources */,
 				749F4B141A8FCBD900EA02E3 /* Track.m in Sources */,
 				F79992691A520E2400D17464 /* ArtistTrackController.m in Sources */,
+				745E1CAF1A9916B500267653 /* DeezerService.m in Sources */,
 				F78A9F271A575BBB00911F2D /* DBManager.m in Sources */,
 				F753570B1A50570A00AD348B /* ArtistDetailController.m in Sources */,
 				74EF911D1A40343C0044F2BE /* AppDelegate.m in Sources */,

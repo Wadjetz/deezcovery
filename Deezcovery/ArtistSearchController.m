@@ -8,10 +8,9 @@
 
 #import "ArtistSearchController.h"
 #import "Artist.h"
-#import "Artist+DeezerAPI.h"
+#import "DeezerService.h"
 #import "Artist+JsonSerializer.h"
 #import "ArtistDetailController.h"
-#import "DeezerApi.h"
 
 @interface ArtistSearchController ()
 
