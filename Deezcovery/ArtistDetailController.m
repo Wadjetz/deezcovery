@@ -11,15 +11,32 @@
 
 @implementation ArtistDetailController
 
+- (IBAction)addFavoris:(id)sender {
+    NSLog(@"Save = %@", self.artist);
+    
+    Artist * newArtist = [self.db createManagedObjectWithClass:[Artist class]];
+    newArtist.artist_id = self.artist.artist_id;
+    newArtist.name = self.artist.name;
+    newArtist.nb_album = self.artist.nb_album;
+    newArtist.nb_fan= self.artist.nb_fan;
+    
+    [self.db persistData];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    self.db = [DBManager sharedInstance];
+    NSArray* list = [self.db fetchArtists];
+    for (Artist *a in list) {
+        NSLog(@"Into DB %@", a.name);
+    }
+    
     
     // Artist's infos
     self.artistName.text = self.artist.name;
     self.nbFans.text = [[NSString alloc] initWithFormat:@"%@", self.artist.nb_fan];
     self.nbAlbums.text = [[NSString alloc] initWithFormat:@"%@", self.artist.nb_album];
-    
-    NSLog(@"%@", self.artist);
     
     // Artist's image
     dispatch_async(dispatch_get_global_queue(0, 0), ^{

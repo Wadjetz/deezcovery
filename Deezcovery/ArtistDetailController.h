@@ -9,10 +9,13 @@
 #import <UIKit/UIKit.h>
 #import "Artist.h"
 #import "DeezerService.h"
+#import "DBManager.h"
 
 @interface ArtistDetailController : UIViewController
 
 @property (strong, nonatomic) Artist* artist;
+
+@property (strong, nonatomic) DBManager* db;
 
 @property (strong, nonatomic) IBOutlet UILabel *artistName;
 @property (strong, nonatomic) IBOutlet UIImageView *artistImage;

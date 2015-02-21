@@ -99,7 +99,6 @@ static NSString *CellIdentifier = @"CellIdentifier";
     // Prepare the segue, set the sended artist
     if([segue.identifier isEqualToString:@"showArtist"]) {
         ArtistDetailController *controller = segue.destinationViewController;
-        NSLog(@"%@", sender);
         controller.artist = sender;
     }
 }

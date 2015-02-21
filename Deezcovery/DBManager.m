@@ -21,11 +21,11 @@
 @end
 
 @implementation DBManager
-/*
+
 - (NSArray *)fetchArtists {
     return [self fetchEntity:@"Artist" predicate:nil prefetchedRelations:nil sortKey:@"name" ascending:YES error:nil];
 }
-*/
+
 -(void)createPersistentStore{
     if ([[_psc persistentStores] count] > 0){
         NSLog(@"addPersistentStoreToCoordinator : store coordinator already has one store");

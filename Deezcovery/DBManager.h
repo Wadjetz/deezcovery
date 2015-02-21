@@ -22,6 +22,6 @@
 - (BOOL)persistData;
 - (void)refreshObject:(NSManagedObject *)managedObject mergeChanges:(BOOL)flag;
 
-//- (NSArray *)fetchArtists;
+- (NSArray *)fetchArtists;
 
 @end
