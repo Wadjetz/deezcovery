@@ -18,6 +18,11 @@
 @property (strong, nonatomic) Artist* artist;
 @property (strong, nonatomic) Artist* dbArtist;
 
+@property (strong, nonatomic) NSNumber* currentArtistId;
+@property (strong, nonatomic) NSString* currentArtistName;
+@property (strong, nonatomic) NSNumber* currentArtistNbAlboms;
+@property (strong, nonatomic) NSNumber* currentArtistNbFan;
+
 @property (strong, nonatomic) DBManager* db;
 
 @property (strong, nonatomic) IBOutlet UILabel *artistName;

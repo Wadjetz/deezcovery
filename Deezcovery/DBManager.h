@@ -29,6 +29,7 @@
 
 
 - (void)saveArtist:(Artist *)artist;
+- (void)saveArtist:(NSNumber *)artist_id with:(NSString*)name with:(NSNumber *)nb_album with:(NSNumber *)nb_fan;
 - (NSArray *)fetchArtists;
 - (Artist *)getArtist:(NSNumber *)artist_id;
 

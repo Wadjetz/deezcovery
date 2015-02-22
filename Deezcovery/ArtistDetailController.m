@@ -11,13 +11,17 @@
 
 @implementation ArtistDetailController
 - (IBAction)onOfFavorisSwitch:(id)sender {
-    
-    self.dbArtist = [self.db getArtist:self.artist.artist_id];
+    NSLog(@"dbArtist = %@", self.dbArtist.artist_id);
+    NSLog(@"artist = %@", self.artist.artist_id);
     
     if(self.onOfFavorisSwitch.on) {
         NSLog(@"on");
         // Artist's tracks
-        
+        [self.db saveArtist:self.currentArtistId
+                       with:self.currentArtistName
+                       with:self.currentArtistNbAlboms
+                       with:self.currentArtistNbFan];
+        /*
         if (self.dbArtist == nil) {
             
             dispatch_async(dispatch_get_global_queue(0, 0), ^{
@@ -28,14 +32,10 @@
                     NSDictionary *results = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:nil];
                     if([results objectForKey:@"data"]) {
                         NSArray *jsonTracks = (NSArray*)results[@"data"];
-                        NSMutableArray * tracks = [@[] mutableCopy];
                         for (id item in jsonTracks) {
                             Track * track = [Track trackFromJson:item];
-                            [tracks addObject:track];
-                            
+                            [self.db saveTrack:track forArtist:self.artist];
                         }
-                        
-                        NSLog(@"ITEM == %@", tracks);
                     } else {
                         NSLog(@"No Traks");
                     }
@@ -43,13 +43,11 @@
                     NSLog(@"Error loading tracks");
                 }
             });
-            
-            [self.db saveArtist:self.artist];
         }
+         */
     } else {
-        NSLog(@"of");
         NSLog(@"Delete Favoris");
-        self.dbArtist = [self.db getArtist:self.artist.artist_id];
+        self.dbArtist = [self.db getArtist:self.currentArtistId];
         if (self.dbArtist != nil) {
             [self.db deleteManagedObject:self.dbArtist];
             [self.db persistData];
@@ -61,9 +59,14 @@
     [super viewDidLoad];
     self.db = [DBManager sharedInstance];
     
-    [self.db getTracks:self.artist];
+    NSLog(@"getTracks ==> %@", [self.db getTracks:self.artist]);
     
     self.dbArtist = [self.db getArtist:self.artist.artist_id];
+    
+    self.currentArtistId = self.artist.artist_id.copy;
+    self.currentArtistName = self.artist.name.copy;
+    self.currentArtistNbAlboms = self.artist.nb_album.copy;
+    self.currentArtistNbFan = self.artist.nb_fan.copy;
     
     if(self.dbArtist == nil) {
         self.onOfFavorisSwitch.on = NO;
