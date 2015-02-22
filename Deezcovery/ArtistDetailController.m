@@ -16,14 +16,35 @@
     
     if(self.onOfFavorisSwitch.on) {
         NSLog(@"on");
+        // Artist's tracks
+        
         if (self.dbArtist == nil) {
-            Artist * newArtist = [self.db createManagedObjectWithClass:[Artist class]];
-            newArtist.artist_id = self.artist.artist_id;
-            newArtist.name = self.artist.name;
-            newArtist.nb_album = self.artist.nb_album;
-            newArtist.nb_fan= self.artist.nb_fan;
-            NSLog(@"Save = %@", newArtist.name);
-            [self.db persistData];
+            
+            dispatch_async(dispatch_get_global_queue(0, 0), ^{
+                NSData *data = [[NSData alloc] initWithContentsOfURL:[NSURL URLWithString:[DeezerService getTracksLink:self.artist.artist_id]]];
+                
+                if(data) {
+                    // Fill the artists list with the results
+                    NSDictionary *results = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:nil];
+                    if([results objectForKey:@"data"]) {
+                        NSArray *jsonTracks = (NSArray*)results[@"data"];
+                        NSMutableArray * tracks = [@[] mutableCopy];
+                        for (id item in jsonTracks) {
+                            Track * track = [Track trackFromJson:item];
+                            [tracks addObject:track];
+                            
+                        }
+                        
+                        NSLog(@"ITEM == %@", tracks);
+                    } else {
+                        NSLog(@"No Traks");
+                    }
+                } else {
+                    NSLog(@"Error loading tracks");
+                }
+            });
+            
+            [self.db saveArtist:self.artist];
         }
     } else {
         NSLog(@"of");
@@ -38,10 +59,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    NSLog(@"Details viewDidLoad self.artist = %@", self.artist);
-    
     self.db = [DBManager sharedInstance];
+    
+    [self.db getTracks:self.artist];
     
     self.dbArtist = [self.db getArtist:self.artist.artist_id];
     
@@ -50,9 +70,6 @@
     } else {
         self.onOfFavorisSwitch.on = YES;
     }
-    
-    NSLog(@"dbArtist = %@", self.dbArtist.name);
-    
 
     // Artist's infos
     self.artistName.text = self.artist.name;

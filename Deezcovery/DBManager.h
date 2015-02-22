@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 #import "Artist.h"
+#import "Track.h"
 
 @interface DBManager : NSObject
 
@@ -23,6 +24,11 @@
 - (BOOL)persistData;
 - (void)refreshObject:(NSManagedObject *)managedObject mergeChanges:(BOOL)flag;
 
+- (void)saveTrack:(Track *)track forArtist:(Artist *)artist;
+- (NSArray *)getTracks:(Artist *)artist;
+
+
+- (void)saveArtist:(Artist *)artist;
 - (NSArray *)fetchArtists;
 - (Artist *)getArtist:(NSNumber *)artist_id;
 

@@ -22,6 +22,31 @@
 
 @implementation DBManager
 
+- (void)saveTrack:(Track *)track forArtist:(Artist *)artist {
+    Track * newTrack = [self createManagedObjectWithClass:[Track class]];
+    newTrack.track_id = track.track_id;
+    newTrack.name = track.name;
+    newTrack.path = track.path;
+    [newTrack setValue:artist forKeyPath:@"artists"];
+    NSLog(@"Save = %@", newTrack.name);
+    [self persistData];
+}
+
+- (NSArray *)getTracks:(Artist *)artist {
+    NSLog(@"getTracks artist=%@", artist);
+    return nil;
+}
+
+- (void)saveArtist:(Artist *)artist {
+    Artist * newArtist = [self createManagedObjectWithClass:[Artist class]];
+    newArtist.artist_id = artist.artist_id;
+    newArtist.name = artist.name;
+    newArtist.nb_album = artist.nb_album;
+    newArtist.nb_fan= artist.nb_fan;
+    NSLog(@"Save = %@", newArtist.name);
+    [self persistData];
+}
+
 - (NSArray *)fetchArtists {
     NSError * error;
     NSArray * result = [self fetchEntity:@"Artist" predicate:nil prefetchedRelations:nil sortKey:@"name" ascending:YES error:&error];
@@ -31,6 +56,7 @@
     }
     return result;
 }
+
 
 - (Artist *)getArtist:(NSNumber *)artist_id {
     NSError * error;

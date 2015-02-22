@@ -24,7 +24,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    NSLog(@"Hello from favoris");
     self.db = [DBManager sharedInstance];
     
     self.tableView.delegate = self;
@@ -34,7 +33,6 @@
 }
 
 - (void)viewWillAppear:(BOOL)animated{
-    NSLog(@"FavorisController viewWillAppear");
     [super viewWillAppear:animated];
     self.favoris = [[self.db fetchArtists] mutableCopy];
     [self.tableView reloadData];
@@ -46,18 +44,15 @@
 
 // -- Cell selected --
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    NSLog(@"Fuck IOS - didSelectRowAtIndexPath");
     self.selectedArtist = self.favoris[indexPath.row];
     [self performSegueWithIdentifier:SEGUE_TO_DETAIL_ID sender:self];
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // Prepare the segue, set the sended artist
-    NSLog(@"Fuck IOS - prepareForSegue");
     if([segue.identifier isEqualToString:SEGUE_TO_DETAIL_ID]) {
         ArtistDetailController *controller = segue.destinationViewController;
         controller.artist = self.selectedArtist;
-        NSLog(@"Fuck IOS - prepareForSegue controller.artist = %@", self.selectedArtist);
     }
 }
 

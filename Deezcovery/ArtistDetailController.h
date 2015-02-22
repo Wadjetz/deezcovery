@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #import "Artist.h"
+#import "Track.h"
+#import "Track+JsonSerializer.h"
 #import "DeezerService.h"
 #import "DBManager.h"
 

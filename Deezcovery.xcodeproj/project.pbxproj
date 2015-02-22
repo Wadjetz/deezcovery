@@ -13,9 +13,9 @@
 		749F4B111A8FCB4700EA02E3 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 749F4B0F1A8FCB4700EA02E3 /* Model.xcdatamodeld */; };
 		749F4B141A8FCBD900EA02E3 /* Track.m in Sources */ = {isa = PBXBuildFile; fileRef = 749F4B131A8FCBD900EA02E3 /* Track.m */; };
 		74C30EB71A99C66D00321BCD /* FavorisController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74C30EB61A99C66D00321BCD /* FavorisController.m */; };
+		74C30EBB1A9A08EA00321BCD /* Track+JsonSerializer.m in Sources */ = {isa = PBXBuildFile; fileRef = 74C30EBA1A9A08EA00321BCD /* Track+JsonSerializer.m */; };
 		74EF911A1A40343C0044F2BE /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 74EF91191A40343C0044F2BE /* main.m */; };
 		74EF911D1A40343C0044F2BE /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 74EF911C1A40343C0044F2BE /* AppDelegate.m */; };
-		74EF91201A40343C0044F2BE /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74EF911F1A40343C0044F2BE /* ViewController.m */; };
 		74EF91231A40343C0044F2BE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 74EF91211A40343C0044F2BE /* Main.storyboard */; };
 		74EF91251A40343C0044F2BE /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 74EF91241A40343C0044F2BE /* Images.xcassets */; };
 		74EF91281A40343C0044F2BE /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 74EF91261A40343C0044F2BE /* LaunchScreen.xib */; };
@@ -48,13 +48,13 @@
 		749F4B131A8FCBD900EA02E3 /* Track.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Track.m; sourceTree = "<group>"; };
 		74C30EB51A99C66D00321BCD /* FavorisController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FavorisController.h; sourceTree = "<group>"; };
 		74C30EB61A99C66D00321BCD /* FavorisController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FavorisController.m; sourceTree = "<group>"; };
+		74C30EB91A9A08EA00321BCD /* Track+JsonSerializer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Track+JsonSerializer.h"; sourceTree = "<group>"; };
+		74C30EBA1A9A08EA00321BCD /* Track+JsonSerializer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Track+JsonSerializer.m"; sourceTree = "<group>"; };
 		74EF91141A40343C0044F2BE /* Deezcovery.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Deezcovery.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		74EF91181A40343C0044F2BE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		74EF91191A40343C0044F2BE /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		74EF911B1A40343C0044F2BE /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		74EF911C1A40343C0044F2BE /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		74EF911E1A40343C0044F2BE /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		74EF911F1A40343C0044F2BE /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		74EF91221A40343C0044F2BE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		74EF91241A40343C0044F2BE /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		74EF91271A40343C0044F2BE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
@@ -111,6 +111,15 @@
 			name = Persistence;
 			sourceTree = "<group>";
 		};
+		74C30EB81A9A039300321BCD /* ui */ = {
+			isa = PBXGroup;
+			children = (
+				74EF91211A40343C0044F2BE /* Main.storyboard */,
+				74EF91261A40343C0044F2BE /* LaunchScreen.xib */,
+			);
+			name = ui;
+			sourceTree = "<group>";
+		};
 		74EF910B1A40343C0044F2BE = {
 			isa = PBXGroup;
 			children = (
@@ -133,13 +142,12 @@
 		74EF91161A40343C0044F2BE /* Deezcovery */ = {
 			isa = PBXGroup;
 			children = (
+				74C30EB81A9A039300321BCD /* ui */,
 				749F4B081A8FC7EF00EA02E3 /* Services */,
-				F78A9F241A575B3D00911F2D /* Controllers */,
-				74EF91211A40343C0044F2BE /* Main.storyboard */,
-				74EF91241A40343C0044F2BE /* Images.xcassets */,
-				74EF91261A40343C0044F2BE /* LaunchScreen.xib */,
-				74EF91171A40343C0044F2BE /* Supporting Files */,
 				F7660A671A4EF90900F0A9E7 /* Models */,
+				F78A9F241A575B3D00911F2D /* Controllers */,
+				74EF91241A40343C0044F2BE /* Images.xcassets */,
+				74EF91171A40343C0044F2BE /* Supporting Files */,
 				74EF911B1A40343C0044F2BE /* AppDelegate.h */,
 				74EF911C1A40343C0044F2BE /* AppDelegate.m */,
 			);
@@ -182,6 +190,8 @@
 				749F4B131A8FCBD900EA02E3 /* Track.m */,
 				745E1CAA1A99103700267653 /* Artist+JsonSerializer.h */,
 				745E1CAB1A99103700267653 /* Artist+JsonSerializer.m */,
+				74C30EB91A9A08EA00321BCD /* Track+JsonSerializer.h */,
+				74C30EBA1A9A08EA00321BCD /* Track+JsonSerializer.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -189,8 +199,6 @@
 		F78A9F241A575B3D00911F2D /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				74EF911E1A40343C0044F2BE /* ViewController.h */,
-				74EF911F1A40343C0044F2BE /* ViewController.m */,
 				F79992671A520E2400D17464 /* ArtistTrackController.h */,
 				F79992681A520E2400D17464 /* ArtistTrackController.m */,
 				F7660A691A4F6B5C00F0A9E7 /* ArtistSearchController.h */,
@@ -303,9 +311,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				74C30EBB1A9A08EA00321BCD /* Track+JsonSerializer.m in Sources */,
 				745E1CAC1A99103700267653 /* Artist+JsonSerializer.m in Sources */,
 				74C30EB71A99C66D00321BCD /* FavorisController.m in Sources */,
-				74EF91201A40343C0044F2BE /* ViewController.m in Sources */,
 				F7660A6B1A4F6B5C00F0A9E7 /* ArtistSearchController.m in Sources */,
 				749F4B141A8FCBD900EA02E3 /* Track.m in Sources */,
 				F79992691A520E2400D17464 /* ArtistTrackController.m in Sources */,
