@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="RVU-5T-Z8E">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="sIk-Iy-ipQ">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
     </dependencies>
@@ -53,37 +53,56 @@
                 </searchDisplayController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KWG-JB-T7F" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="731" y="-257"/>
+            <point key="canvasLocation" x="1255" y="-299"/>
+        </scene>
+        <!--Favoris-->
+        <scene sceneID="R4h-10-ft1">
+            <objects>
+                <tableViewController id="Kgp-oJ-O00" customClass="FavorisController" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="pA6-qa-OPI">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="ArtistFavorisCellId" id="46m-dQ-tyV">
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="46m-dQ-tyV" id="d7d-bP-bNS">
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="Kgp-oJ-O00" id="pgJ-Fp-rtE"/>
+                            <outlet property="delegate" destination="Kgp-oJ-O00" id="YKR-Yt-Kcv"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Favoris" id="UF2-Le-ZOl"/>
+                    <connections>
+                        <outlet property="tableView" destination="pA6-qa-OPI" id="UrI-LT-7vQ"/>
+                        <segue destination="Lmd-jA-Nfq" kind="push" identifier="showFavorisArtist" id="TGn-T4-rEV"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="M6p-UT-u4T" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1255" y="553"/>
         </scene>
         <!--Artist Detail Controller-->
         <scene sceneID="Qzi-Cp-h4T">
             <objects>
                 <viewController id="Lmd-jA-Nfq" customClass="ArtistDetailController" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="UyB-yb-zFq"/>
-                        <viewControllerLayoutGuide type="bottom" id="opE-Ba-R4k"/>
+                        <viewControllerLayoutGuide type="top" id="5od-2J-s0v"/>
+                        <viewControllerLayoutGuide type="bottom" id="iLk-5k-gXW"/>
                     </layoutGuides>
                     <view key="view" contentMode="center" id="kZM-Ac-wjr">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="YSK-kX-var">
+                            <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="YSK-kX-var">
                                 <rect key="frame" x="60" y="105" width="200" height="200"/>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                             </imageView>
-                            <button opaque="NO" contentMode="center" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ygO-bT-Sod">
-                                <rect key="frame" x="16" y="518" width="288" height="30"/>
-                                <state key="normal" title="Ajouter aux favoris">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                            </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="[Nom de l'artiste]" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Uii-Pk-eHh">
-                                <rect key="frame" x="0.0" y="76" width="320" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ytI-tn-aWs">
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ytI-tn-aWs">
                                 <rect key="frame" x="16" y="313" width="288" height="155"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Nombre de fans :" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iDv-zn-RXh">
@@ -110,17 +129,29 @@
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Favoris" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dXf-vG-WuP">
+                                        <rect key="frame" x="8" y="79" width="56" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Y7B-UQ-8xM">
+                                        <rect key="frame" x="120" y="74" width="51" height="31"/>
+                                        <connections>
+                                            <action selector="onOfFavorisSwitch:" destination="Lmd-jA-Nfq" eventType="valueChanged" id="IrC-z7-6gM"/>
+                                        </connections>
+                                    </switch>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="[Nom de l'artiste]" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Uii-Pk-eHh">
+                                <rect key="frame" x="0.0" y="76" width="320" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstAttribute="centerX" secondItem="ytI-tn-aWs" secondAttribute="centerX" id="B1i-Mu-bDa"/>
-                            <constraint firstAttribute="centerX" secondItem="YSK-kX-var" secondAttribute="centerX" id="NV9-P7-mO4"/>
-                            <constraint firstAttribute="centerX" secondItem="Uii-Pk-eHh" secondAttribute="centerX" id="ZDO-QQ-dXp"/>
-                            <constraint firstAttribute="centerX" secondItem="ygO-bT-Sod" secondAttribute="centerX" id="jNo-F8-ibQ"/>
-                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="7dZ-SB-sXk">
                         <nil key="title"/>
@@ -144,12 +175,13 @@
                         <outlet property="artistName" destination="Uii-Pk-eHh" id="w3Z-h0-yiy"/>
                         <outlet property="nbAlbums" destination="GNi-dO-NbW" id="6PA-Mz-VPs"/>
                         <outlet property="nbFans" destination="nQE-7e-5sL" id="wOV-k1-Nc7"/>
+                        <outlet property="onOfFavorisSwitch" destination="Y7B-UQ-8xM" id="SeQ-kP-cdA"/>
                         <segue destination="kO4-fZ-bO4" kind="push" identifier="showTracklist" id="lfu-gW-mHV"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IGi-hU-fxe" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1150" y="-257"/>
+            <point key="canvasLocation" x="1913" y="113"/>
         </scene>
         <!--Artist Track Controller-->
         <scene sceneID="29V-XT-wJp">
@@ -187,7 +219,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="f5b-rp-hsg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1566" y="-258"/>
+            <point key="canvasLocation" x="2362" y="113"/>
         </scene>
         <!--AV Player View Controller-->
         <scene sceneID="W4f-Nu-ihB">
@@ -195,12 +227,13 @@
                 <avPlayerViewController videoGravity="AVLayerVideoGravityResizeAspect" id="ZkE-1X-Hqy" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="a3g-yp-g64" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1955" y="-257"/>
+            <point key="canvasLocation" x="2705" y="113"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Lm2-ZS-gKB">
             <objects>
                 <navigationController id="RVU-5T-Z8E" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" systemItem="search" id="lbM-Af-z1Q"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="j6h-xx-3jL">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -211,7 +244,46 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PYz-FP-2CM" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="262" y="-257"/>
+            <point key="canvasLocation" x="774" y="-299"/>
+        </scene>
+        <!--Tab Bar Controller-->
+        <scene sceneID="vtp-bt-fFj">
+            <objects>
+                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="sIk-Iy-ipQ" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" id="g1T-yU-BnS"/>
+                    <nil key="simulatedBottomBarMetrics"/>
+                    <tabBar key="tabBar" contentMode="scaleToFill" id="nUU-HT-sSP">
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="RVU-5T-Z8E" kind="relationship" relationship="viewControllers" id="G2A-ZO-qMj"/>
+                        <segue destination="512-r4-aOk" kind="relationship" relationship="viewControllers" id="wuN-P0-v5B"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Zzq-8z-Mbv" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="114" y="113"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="cjN-eH-MYA">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="512-r4-aOk" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" systemItem="favorites" id="eVZ-fd-Hdk"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="K0J-db-KgB">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="Kgp-oJ-O00" kind="relationship" relationship="rootViewController" id="3yH-IE-gb0"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="68W-8k-bJk" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="774" y="553"/>
         </scene>
     </scenes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
@@ -219,4 +291,7 @@
         <simulatedOrientationMetrics key="orientation"/>
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
+    <inferredMetricsTieBreakers>
+        <segue reference="TGn-T4-rEV"/>
+    </inferredMetricsTieBreakers>
 </document>

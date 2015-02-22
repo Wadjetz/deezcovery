@@ -89,12 +89,12 @@
 
 
 - (void)viewDidLoad {
-    
+    [super viewDidLoad];
     self.playingTrack = -1;
     
     // Artist's tracks
     dispatch_async(dispatch_get_global_queue(0, 0), ^{
-        NSData *data = [[NSData alloc] initWithContentsOfURL:[NSURL URLWithString:[self.artist getTracksLink]]];
+        NSData *data = [[NSData alloc] initWithContentsOfURL:[NSURL URLWithString:[DeezerService getTracksLink:self.artist.artist_id]]];
         
         if(data) {
             // Fill the artists list with the results

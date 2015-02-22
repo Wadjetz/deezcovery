@@ -7,10 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		749F4B0C1A8FC93D00EA02E3 /* Artist+DeezerAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 749F4B0B1A8FC93D00EA02E3 /* Artist+DeezerAPI.m */; };
+		745E1CAC1A99103700267653 /* Artist+JsonSerializer.m in Sources */ = {isa = PBXBuildFile; fileRef = 745E1CAB1A99103700267653 /* Artist+JsonSerializer.m */; };
+		745E1CAF1A9916B500267653 /* DeezerService.m in Sources */ = {isa = PBXBuildFile; fileRef = 745E1CAE1A9916B500267653 /* DeezerService.m */; };
 		749F4B0E1A8FCB3500EA02E3 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 749F4B0D1A8FCB3500EA02E3 /* CoreData.framework */; };
 		749F4B111A8FCB4700EA02E3 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 749F4B0F1A8FCB4700EA02E3 /* Model.xcdatamodeld */; };
 		749F4B141A8FCBD900EA02E3 /* Track.m in Sources */ = {isa = PBXBuildFile; fileRef = 749F4B131A8FCBD900EA02E3 /* Track.m */; };
+		74C30EB71A99C66D00321BCD /* FavorisController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74C30EB61A99C66D00321BCD /* FavorisController.m */; };
 		74EF911A1A40343C0044F2BE /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 74EF91191A40343C0044F2BE /* main.m */; };
 		74EF911D1A40343C0044F2BE /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 74EF911C1A40343C0044F2BE /* AppDelegate.m */; };
 		74EF91201A40343C0044F2BE /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74EF911F1A40343C0044F2BE /* ViewController.m */; };
@@ -21,9 +23,7 @@
 		F753570B1A50570A00AD348B /* ArtistDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = F753570A1A50570A00AD348B /* ArtistDetailController.m */; };
 		F7660A661A4EF8F900F0A9E7 /* Artist.m in Sources */ = {isa = PBXBuildFile; fileRef = F7660A651A4EF8F900F0A9E7 /* Artist.m */; };
 		F7660A6B1A4F6B5C00F0A9E7 /* ArtistSearchController.m in Sources */ = {isa = PBXBuildFile; fileRef = F7660A6A1A4F6B5C00F0A9E7 /* ArtistSearchController.m */; };
-		F78A9F231A575B2300911F2D /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = F78A9F221A575B2300911F2D /* libsqlite3.dylib */; };
 		F78A9F271A575BBB00911F2D /* DBManager.m in Sources */ = {isa = PBXBuildFile; fileRef = F78A9F261A575BBB00911F2D /* DBManager.m */; };
-		F78A9F871A5765DF00911F2D /* database.sql in Resources */ = {isa = PBXBuildFile; fileRef = F78A9F861A5765DF00911F2D /* database.sql */; };
 		F79992691A520E2400D17464 /* ArtistTrackController.m in Sources */ = {isa = PBXBuildFile; fileRef = F79992681A520E2400D17464 /* ArtistTrackController.m */; };
 /* End PBXBuildFile section */
 
@@ -38,12 +38,16 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		749F4B0A1A8FC93D00EA02E3 /* Artist+DeezerAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Artist+DeezerAPI.h"; sourceTree = "<group>"; };
-		749F4B0B1A8FC93D00EA02E3 /* Artist+DeezerAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Artist+DeezerAPI.m"; sourceTree = "<group>"; };
+		745E1CAA1A99103700267653 /* Artist+JsonSerializer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Artist+JsonSerializer.h"; sourceTree = "<group>"; };
+		745E1CAB1A99103700267653 /* Artist+JsonSerializer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Artist+JsonSerializer.m"; sourceTree = "<group>"; };
+		745E1CAD1A9916B500267653 /* DeezerService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeezerService.h; sourceTree = "<group>"; };
+		745E1CAE1A9916B500267653 /* DeezerService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeezerService.m; sourceTree = "<group>"; };
 		749F4B0D1A8FCB3500EA02E3 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		749F4B101A8FCB4700EA02E3 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		749F4B121A8FCBD900EA02E3 /* Track.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Track.h; sourceTree = "<group>"; };
 		749F4B131A8FCBD900EA02E3 /* Track.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Track.m; sourceTree = "<group>"; };
+		74C30EB51A99C66D00321BCD /* FavorisController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FavorisController.h; sourceTree = "<group>"; };
+		74C30EB61A99C66D00321BCD /* FavorisController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FavorisController.m; sourceTree = "<group>"; };
 		74EF91141A40343C0044F2BE /* Deezcovery.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Deezcovery.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		74EF91181A40343C0044F2BE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		74EF91191A40343C0044F2BE /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -61,13 +65,10 @@
 		F753570A1A50570A00AD348B /* ArtistDetailController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ArtistDetailController.m; sourceTree = "<group>"; };
 		F7660A641A4EF8F900F0A9E7 /* Artist.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Artist.h; sourceTree = "<group>"; };
 		F7660A651A4EF8F900F0A9E7 /* Artist.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Artist.m; sourceTree = "<group>"; };
-		F7660A681A4F5BEC00F0A9E7 /* DeezerApi.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DeezerApi.h; sourceTree = "<group>"; };
 		F7660A691A4F6B5C00F0A9E7 /* ArtistSearchController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ArtistSearchController.h; sourceTree = "<group>"; };
 		F7660A6A1A4F6B5C00F0A9E7 /* ArtistSearchController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ArtistSearchController.m; sourceTree = "<group>"; };
-		F78A9F221A575B2300911F2D /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 		F78A9F251A575BBB00911F2D /* DBManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBManager.h; sourceTree = "<group>"; };
 		F78A9F261A575BBB00911F2D /* DBManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBManager.m; sourceTree = "<group>"; };
-		F78A9F861A5765DF00911F2D /* database.sql */ = {isa = PBXFileReference; lastKnownFileType = file; path = database.sql; sourceTree = "<group>"; };
 		F79992671A520E2400D17464 /* ArtistTrackController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ArtistTrackController.h; sourceTree = "<group>"; };
 		F79992681A520E2400D17464 /* ArtistTrackController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ArtistTrackController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -78,7 +79,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				749F4B0E1A8FCB3500EA02E3 /* CoreData.framework in Frameworks */,
-				F78A9F231A575B2300911F2D /* libsqlite3.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -95,9 +95,8 @@
 		749F4B081A8FC7EF00EA02E3 /* Services */ = {
 			isa = PBXGroup;
 			children = (
-				F7660A681A4F5BEC00F0A9E7 /* DeezerApi.h */,
-				749F4B0A1A8FC93D00EA02E3 /* Artist+DeezerAPI.h */,
-				749F4B0B1A8FC93D00EA02E3 /* Artist+DeezerAPI.m */,
+				745E1CAD1A9916B500267653 /* DeezerService.h */,
+				745E1CAE1A9916B500267653 /* DeezerService.m */,
 			);
 			name = Services;
 			sourceTree = "<group>";
@@ -105,6 +104,7 @@
 		749F4B091A8FC83600EA02E3 /* Persistence */ = {
 			isa = PBXGroup;
 			children = (
+				749F4B0F1A8FCB4700EA02E3 /* Model.xcdatamodeld */,
 				F78A9F251A575BBB00911F2D /* DBManager.h */,
 				F78A9F261A575BBB00911F2D /* DBManager.m */,
 			);
@@ -115,7 +115,6 @@
 			isa = PBXGroup;
 			children = (
 				749F4B0D1A8FCB3500EA02E3 /* CoreData.framework */,
-				F78A9F221A575B2300911F2D /* libsqlite3.dylib */,
 				74EF91161A40343C0044F2BE /* Deezcovery */,
 				74EF91301A40343C0044F2BE /* DeezcoveryTests */,
 				74EF91151A40343C0044F2BE /* Products */,
@@ -134,9 +133,7 @@
 		74EF91161A40343C0044F2BE /* Deezcovery */ = {
 			isa = PBXGroup;
 			children = (
-				749F4B0F1A8FCB4700EA02E3 /* Model.xcdatamodeld */,
 				749F4B081A8FC7EF00EA02E3 /* Services */,
-				F78A9F861A5765DF00911F2D /* database.sql */,
 				F78A9F241A575B3D00911F2D /* Controllers */,
 				74EF91211A40343C0044F2BE /* Main.storyboard */,
 				74EF91241A40343C0044F2BE /* Images.xcassets */,
@@ -183,6 +180,8 @@
 				F7660A651A4EF8F900F0A9E7 /* Artist.m */,
 				749F4B121A8FCBD900EA02E3 /* Track.h */,
 				749F4B131A8FCBD900EA02E3 /* Track.m */,
+				745E1CAA1A99103700267653 /* Artist+JsonSerializer.h */,
+				745E1CAB1A99103700267653 /* Artist+JsonSerializer.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -198,6 +197,8 @@
 				F7660A6A1A4F6B5C00F0A9E7 /* ArtistSearchController.m */,
 				F75357091A50570A00AD348B /* ArtistDetailController.h */,
 				F753570A1A50570A00AD348B /* ArtistDetailController.m */,
+				74C30EB51A99C66D00321BCD /* FavorisController.h */,
+				74C30EB61A99C66D00321BCD /* FavorisController.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -284,7 +285,6 @@
 			files = (
 				74EF91231A40343C0044F2BE /* Main.storyboard in Resources */,
 				74EF91281A40343C0044F2BE /* LaunchScreen.xib in Resources */,
-				F78A9F871A5765DF00911F2D /* database.sql in Resources */,
 				74EF91251A40343C0044F2BE /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -303,11 +303,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				749F4B0C1A8FC93D00EA02E3 /* Artist+DeezerAPI.m in Sources */,
+				745E1CAC1A99103700267653 /* Artist+JsonSerializer.m in Sources */,
+				74C30EB71A99C66D00321BCD /* FavorisController.m in Sources */,
 				74EF91201A40343C0044F2BE /* ViewController.m in Sources */,
 				F7660A6B1A4F6B5C00F0A9E7 /* ArtistSearchController.m in Sources */,
 				749F4B141A8FCBD900EA02E3 /* Track.m in Sources */,
 				F79992691A520E2400D17464 /* ArtistTrackController.m in Sources */,
+				745E1CAF1A9916B500267653 /* DeezerService.m in Sources */,
 				F78A9F271A575BBB00911F2D /* DBManager.m in Sources */,
 				F753570B1A50570A00AD348B /* ArtistDetailController.m in Sources */,
 				74EF911D1A40343C0044F2BE /* AppDelegate.m in Sources */,

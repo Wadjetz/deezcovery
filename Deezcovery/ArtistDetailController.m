@@ -10,10 +10,50 @@
 #import "ArtistTrackController.h"
 
 @implementation ArtistDetailController
+- (IBAction)onOfFavorisSwitch:(id)sender {
+    
+    self.dbArtist = [self.db getArtist:self.artist.artist_id];
+    
+    if(self.onOfFavorisSwitch.on) {
+        NSLog(@"on");
+        if (self.dbArtist == nil) {
+            Artist * newArtist = [self.db createManagedObjectWithClass:[Artist class]];
+            newArtist.artist_id = self.artist.artist_id;
+            newArtist.name = self.artist.name;
+            newArtist.nb_album = self.artist.nb_album;
+            newArtist.nb_fan= self.artist.nb_fan;
+            NSLog(@"Save = %@", newArtist.name);
+            [self.db persistData];
+        }
+    } else {
+        NSLog(@"of");
+        NSLog(@"Delete Favoris");
+        self.dbArtist = [self.db getArtist:self.artist.artist_id];
+        if (self.dbArtist != nil) {
+            [self.db deleteManagedObject:self.dbArtist];
+            [self.db persistData];
+        }
+    }
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    NSLog(@"Details viewDidLoad self.artist = %@", self.artist);
+    
+    self.db = [DBManager sharedInstance];
+    
+    self.dbArtist = [self.db getArtist:self.artist.artist_id];
+    
+    if(self.dbArtist == nil) {
+        self.onOfFavorisSwitch.on = NO;
+    } else {
+        self.onOfFavorisSwitch.on = YES;
+    }
+    
+    NSLog(@"dbArtist = %@", self.dbArtist.name);
+    
+
     // Artist's infos
     self.artistName.text = self.artist.name;
     self.nbFans.text = [[NSString alloc] initWithFormat:@"%@", self.artist.nb_fan];
@@ -21,7 +61,7 @@
     
     // Artist's image
     dispatch_async(dispatch_get_global_queue(0, 0), ^{
-        NSData *data = [[NSData alloc] initWithContentsOfURL:[NSURL URLWithString:[self.artist getPhotoLink]]];
+        NSData *data = [[NSData alloc] initWithContentsOfURL:[NSURL URLWithString:[DeezerService getPhotoLink:self.artist.artist_id]]];
         
         if(data) {
             dispatch_async(dispatch_get_main_queue(), ^{

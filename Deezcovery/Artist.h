@@ -7,24 +7,14 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "DeezerApi.h"
+#import <CoreData/CoreData.h>
 
-@interface Artist : NSObject
+@interface Artist : NSManagedObject
 
-// -- Properties --
-// The artist id, used to get its informations with the deezer api
 @property (nonatomic) NSNumber *artist_id;
+@property (nonatomic, strong) NSString *name; // The artist's name
+@property (nonatomic) NSNumber *nb_album; // The number of albums the artist has
+@property (nonatomic) NSNumber *nb_fan; // The number of fans the artist has
 
-// The artist's name
-@property (nonatomic, strong) NSString *name;
-
-// The number of albums the artist has
-@property (nonatomic) NSNumber *nb_album;
-
-// The number of fans the artist has
-@property (nonatomic) NSNumber *nb_fan;
-
-// -- Prototypes --
-- (Artist *)initWithDictionary:(NSDictionary *) dictionary;
 
 @end

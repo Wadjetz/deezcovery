@@ -8,164 +8,207 @@
 
 #import "DBManager.h"
 
-@interface DBManager()
+#define Persistance_Directory   @"Persistence"
+#define SQlite_DB_Filename      @"Deezcovery.sqlite"
 
-@property (nonatomic, strong) NSString *documentsDirectory;
-@property (nonatomic, strong) NSString *databaseFilename;
+@interface DBManager ()
 
-@property (nonatomic, strong) NSMutableArray *results;
-
--(void)copyDatabaseIntoDocumentsDirectory;
--(void)runQuery:(const char*)query isQueryExecutable:(BOOL)queryExecutable;
+@property (strong, nonatomic) NSManagedObjectContext *moc;
+@property (strong, nonatomic) NSManagedObjectModel *mom;
+@property (strong, nonatomic) NSPersistentStoreCoordinator *psc;
+@property (strong, nonatomic) NSPersistentStore *ps;
 
 @end
-
 
 @implementation DBManager
 
--(void) copyDatabaseIntoDocumentsDirectory {
-    
-    NSString* destinationPath = [self.documentsDirectory stringByAppendingPathComponent:self.databaseFilename];
-    
-    // The file doesn't exist
-    if([[NSFileManager defaultManager] fileExistsAtPath:destinationPath]) {
-        NSString *sourcePath = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:self.databaseFilename];
-        NSError *error;
-        
-        [[NSFileManager defaultManager] copyItemAtPath:sourcePath toPath:destinationPath error:&error];
-        
-        if(!error) {
-            NSLog(@"Error : %@", [error description]);
-        }
+- (NSArray *)fetchArtists {
+    NSError * error;
+    NSArray * result = [self fetchEntity:@"Artist" predicate:nil prefetchedRelations:nil sortKey:@"name" ascending:YES error:&error];
+    if(nil != error){
+        NSLog(@"PersistData failed with errors: \n%@\n%@", error.localizedDescription, error.userInfo);
+        return nil;
+    }
+    return result;
+}
+
+- (Artist *)getArtist:(NSNumber *)artist_id {
+    NSError * error;
+    NSPredicate * filter = [NSPredicate predicateWithFormat:@"artist_id == %@", artist_id];
+    NSArray * result = [self fetchEntity:@"Artist" predicate:filter prefetchedRelations:nil sortKey:@"name" ascending:YES error:&error];
+    if(nil != error){
+        NSLog(@"PersistData failed with errors: \n%@\n%@", error.localizedDescription, error.userInfo);
+        return nil;
+    }
+    if ([result count] > 0) {
+        return result[0];
+    } else {
+        return nil;
     }
 }
 
-
--(instancetype) initWithDatabaseFilename:(NSString*) dbFilename {
-    self = [super init];
-    
-    if(self) {
-        // Set the document directory
-        NSArray* paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-        self.documentsDirectory = [paths objectAtIndex:0];
-        
-        // Set the database filename
-        self.databaseFilename = dbFilename;
-        
-        [self copyDatabaseIntoDocumentsDirectory];
+-(void)createPersistentStore{
+    if ([[_psc persistentStores] count] > 0){
+        NSLog(@"addPersistentStoreToCoordinator : store coordinator already has one store");
+        return;
     }
     
-    return self;
+    NSURL *storePathURL = [[NSURL alloc] initFileURLWithPath:[self getPersistentStorePathWithType:NSSQLiteStoreType]];
+    NSDictionary *options = @{
+                              NSMigratePersistentStoresAutomaticallyOption: [NSNumber numberWithBool:YES],
+                              NSInferMappingModelAutomaticallyOption: [NSNumber numberWithBool:YES]
+                              };
+    NSError *error;
+    _ps = [_psc addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:storePathURL options:options error:&error];
+    
+    if(_ps == nil){
+        NSLog(@"StoreURL: %@", storePathURL.absoluteString);
+        NSLog(@"Adding persistentStore to the coordinator failed with error:\n %@, %@", error.localizedDescription, error.userInfo);
+        return;
+    }
 }
 
--(void)runQuery:(const char *)query isQueryExecutable:(BOOL)queryExecutable {
-    // Create the sqlite object
-    sqlite3 *sqliteDatabase;
+- (BOOL)persistData{
+    NSError *error = nil;
+    [_moc save:&error];
     
-    // Database path
-    NSString *databasePath = [self.documentsDirectory stringByAppendingPathComponent:self.databaseFilename];
-
-    // Init array result
-    if(self.results) {
-        [self.results removeAllObjects];
-        self.results = nil;
+    if(nil != error){
+        NSLog(@"PersistData failed with errors: \n%@\n%@", error.localizedDescription, error.userInfo);
+        return NO;
     }
-    
-    self.results = [[NSMutableArray alloc] init];
-    
-    if(self.arrColumnNames) {
-        [self.arrColumnNames removeAllObjects];
-        self.arrColumnNames = nil;
-    }
-    
-    self.arrColumnNames = [[NSMutableArray alloc] init];
-    
-    // SQL query
-    int openDatabaseResult = sqlite3_open([databasePath UTF8String], &sqliteDatabase);
-    
-    if(openDatabaseResult == SQLITE_OK) {
-        sqlite3_stmt *compiledStatement;
-        
-        int preparedStatementResult = sqlite3_prepare_v2(sqliteDatabase, query, -1, &compiledStatement, NULL);
-        
-        if(preparedStatementResult == SQLITE_OK) {
-            
-            if(queryExecutable) {
-                //  Execute the query
-                int executeQueryRequest = sqlite3_step(compiledStatement);
-                
-                if(executeQueryRequest == SQLITE_DONE) {
-                    // Keep the affected rows
-                    self.affectedRows = sqlite3_changes(sqliteDatabase);
-                    
-                    // Keep the last ID
-                    self.lastInsertedRowID = sqlite3_last_insert_rowid(sqliteDatabase);
-                    
-                    // Close and free
-                    sqlite3_finalize(compiledStatement);
-                    sqlite3_close(sqliteDatabase);
-                    
-                    return;
-                }
-            } else {
-                NSMutableArray *arrDataRow;
-                
-                while(sqlite3_step(compiledStatement) == SQLITE_ROW) {
-                    arrDataRow = [[NSMutableArray alloc] init];
-                    
-                    int totalColumns = sqlite3_column_count(compiledStatement);
-                    
-                    for(int i = 0; i < totalColumns; i++) {
-                        // Column data
-                        char *dbDataAsChars = (char *)sqlite3_column_text(compiledStatement, i);
-                        
-                        if(dbDataAsChars) {
-                            [arrDataRow addObject:[NSString stringWithUTF8String:dbDataAsChars]];
-                        }
-                        
-                        // Column name
-                        if(self.arrColumnNames.count != totalColumns) {
-                            dbDataAsChars = (char *)sqlite3_column_name(compiledStatement, i);
-                            [self.arrColumnNames addObject:[NSString stringWithUTF8String:dbDataAsChars]];
-                        }
-                    }
-                    
-                    if(arrDataRow.count > 0) {
-                        [self.results addObject:arrDataRow];
-                    }
-                    
-                    // Close and free
-                    sqlite3_finalize(compiledStatement);
-                    sqlite3_close(sqliteDatabase);
-                    
-                    return;
-                }
-            }
-        }
-    }
-    
-    NSLog(@"Error SQLite : %s", sqlite3_errmsg(sqliteDatabase));
+    NSLog(@"Data saved.");
+    return YES;
 }
 
+- (void)refreshObject:(NSManagedObject *)managedObject mergeChanges:(BOOL)flag{
+    [_moc refreshObject:managedObject mergeChanges:flag];
+}
 
+#pragma mark - Tools -
+-(NSArray *)fetchEntity:(NSString *)entityName predicate:(NSPredicate *)predicate prefetchedRelations:(NSArray *)prefetchedRelationKeys sortKey:(NSString *)sortKey ascending:(BOOL)ascending error:(NSError **)error
+{
+    NSEntityDescription *entityDescription = [NSEntityDescription entityForName:entityName inManagedObjectContext:_moc];
+    NSFetchRequest *request = [[NSFetchRequest alloc] init];
+    request.entity = entityDescription;
+    
+    if (predicate)
+        request.predicate = predicate;
+    
+    if (sortKey){
+        NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:sortKey ascending:ascending];
+        request.sortDescriptors = @[sortDescriptor];
+    }
+    
+    if (prefetchedRelationKeys)
+        [request setRelationshipKeyPathsForPrefetching:prefetchedRelationKeys];
+    
+    NSArray *result = [_moc executeFetchRequest:request error:error];
+    if (error && *error != nil)
+        NSLog(@"fetchEntity failed with errors: \n%@\n%@", [(*error) localizedDescription], [(*error) userInfo]);
+    
+    return result;
+}
 
-// Load an artist form the database with its ID
--(Artist*) loadArtistFromDB:(int) ID {
-    
-    
-    
+#pragma mark - Entity creation
+- (id)createManagedObjectWithName:(NSString *)entityName
+{
+    return [NSEntityDescription insertNewObjectForEntityForName:entityName
+                                         inManagedObjectContext:_moc];
+}
+
+- (id)createManagedObjectWithClass:(Class)entityClass
+{
+    return [NSEntityDescription insertNewObjectForEntityForName:NSStringFromClass(entityClass)
+                                         inManagedObjectContext:_moc];
+}
+
+- (id)createTemporaryObjectWithClass:(Class)entityClass
+{
+    return [[NSManagedObject alloc] initWithEntity:[NSEntityDescription entityForName:NSStringFromClass(entityClass)
+                                                               inManagedObjectContext:_moc] insertIntoManagedObjectContext:nil];
+}
+
+#pragma mark - Generic Core data entity deletion
+- (void)deleteManagedObject:(NSManagedObject *)object
+{
+    [_moc deleteObject:object];
+}
+
+#pragma mark - Utils -
+#pragma mark - standards iOS directories
+- (NSString *)getDocumentDirectoryPath
+{
+    return [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+}
+
+- (NSString *)getLibraryDirectoryPath
+{
+    return [NSSearchPathForDirectoriesInDomains(NSLibraryDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+}
+
+- (NSString *)getCacheDirectoryPath
+{
+    return [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+}
+
+#pragma mark - CoreData db path
+- (NSString *)getPersistentStorePathWithType:(NSString *)type
+{
+    if ([type isEqualToString:NSSQLiteStoreType])
+    {
+        NSString *path = [[self getLibraryDirectoryPath] stringByAppendingPathComponent:Persistance_Directory];
+        
+        [self createDirIfNotExists:path];
+        return [path stringByAppendingPathComponent:SQlite_DB_Filename];
+    }
+    NSLog(@"Unrecognized Persistent store type.");
     return nil;
 }
 
-// Save an artist from the database
--(void) saveArtist:(Artist*) artist {
-    
+-(BOOL)createDirIfNotExists:(NSString *)path
+{
+    NSError *error = nil;
+    NSFileManager *manager = [NSFileManager defaultManager];
+    BOOL isDir;
+    if(![manager fileExistsAtPath:path isDirectory:&isDir])
+    {
+        if(![manager createDirectoryAtPath:path withIntermediateDirectories:YES attributes:nil error:&error])
+        {
+            NSLog(@"Creating photos directory failed with error: %@, %@", error.localizedDescription, error.userInfo);
+            return NO;
+        }
+    }
+    return YES;
 }
 
-// Delete an artist from the database
--(void) deleteArtist:(Artist*) artist  {
-    
-}
+#pragma mark - singleton creation pattern
+static DBManager *sharedInstance = nil;
 
++ (id)sharedInstance{
+    static dispatch_once_t once;
+    dispatch_once(&once, ^{
+        if (sharedInstance == nil)
+            sharedInstance = [[super allocWithZone:NULL] init];
+    });
+    return sharedInstance;
+}
++ (id)allocWithZone:(NSZone *)zone{
+    return [self sharedInstance];
+}
+- (id)copyWithZone:(NSZone *)zone{
+    return self;
+}
+- (id)init{
+    if(nil != (self = [super init])){
+        _moc = [[NSManagedObjectContext alloc] init];
+        _mom = [[NSManagedObjectModel alloc] initWithContentsOfURL:[[NSBundle mainBundle] URLForResource:@"Model" withExtension:@"momd"]];
+        _psc = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:_mom];
+        
+        [_moc setPersistentStoreCoordinator:_psc];
+        [self createPersistentStore];
+    }
+    return self;
+}
 
 @end
+
