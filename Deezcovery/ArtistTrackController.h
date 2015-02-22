@@ -10,6 +10,8 @@
 #import <AVFoundation/AVFoundation.h>
 #import <AudioToolbox/AudioToolbox.h>
 #import "Artist.h"
+#import "Track.h"
+#import "Track+JsonSerializer.h"
 #import "DeezerService.h"
 
 @interface ArtistTrackController : UITableViewController

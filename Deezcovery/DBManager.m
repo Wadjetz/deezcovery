@@ -22,6 +22,55 @@
 
 @implementation DBManager
 
+- (void)saveTrack:(Track *)track forArtist:(Artist *)artist {
+    if (track) {
+        Track * newTrack = [self createManagedObjectWithClass:[Track class]];
+        newTrack.track_id = track.track_id;
+        newTrack.name = track.name;
+        newTrack.path = track.path;
+        [newTrack setValue:artist forKeyPath:@"artists"];
+        NSLog(@"Save = %@", newTrack.name);
+        [self persistData];
+    } else {
+        NSLog(@"No Save track nil");
+    }
+}
+
+- (NSArray *)getTracks:(Artist *)artist {
+    NSError * error;
+    NSArray * result = [self fetchEntity:@"Track" predicate:nil prefetchedRelations:nil sortKey:nil ascending:YES error:&error];
+    if(nil != error){
+        NSLog(@"PersistData failed with errors: \n%@\n%@", error.localizedDescription, error.userInfo);
+        return nil;
+    }
+    NSLog(@"getTracks result=%lu artist=%@", (unsigned long)result.count, artist.name);
+    return result;
+}
+
+- (void)saveArtist:(Artist *)artist {
+    if(artist && artist.name) {
+        NSLog(@"Save = %@", artist);
+        Artist * newArtist = [self createManagedObjectWithClass:[Artist class]];
+        newArtist.artist_id = artist.artist_id;
+        newArtist.name = artist.name;
+        newArtist.nb_album = artist.nb_album;
+        newArtist.nb_fan= artist.nb_fan;
+        [self persistData];
+    } else {
+        NSLog(@"No Save Artist nil");
+    }
+}
+
+- (void)saveArtist:(NSNumber *)artist_id with:(NSString*)name with:(NSNumber *)nb_album with:(NSNumber *)nb_fan {
+    NSLog(@"Save = %@ %@ %@ %@", artist_id, name, nb_album, nb_fan);
+    Artist * newArtist = [self createManagedObjectWithClass:[Artist class]];
+    newArtist.artist_id = artist_id;
+    newArtist.name = name;
+    newArtist.nb_album = nb_album;
+    newArtist.nb_fan= nb_fan;
+    [self persistData];
+}
+
 - (NSArray *)fetchArtists {
     NSError * error;
     NSArray * result = [self fetchEntity:@"Artist" predicate:nil prefetchedRelations:nil sortKey:@"name" ascending:YES error:&error];
@@ -31,6 +80,7 @@
     }
     return result;
 }
+
 
 - (Artist *)getArtist:(NSNumber *)artist_id {
     NSError * error;
