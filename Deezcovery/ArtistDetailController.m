@@ -12,7 +12,7 @@
 @implementation ArtistDetailController
 
 - (IBAction)addFavoris:(id)sender {
-    NSLog(@"Save = %@", self.artist);
+    NSLog(@"Save = %@", self.artist.name);
     
     Artist * newArtist = [self.db createManagedObjectWithClass:[Artist class]];
     newArtist.artist_id = self.artist.artist_id;
@@ -20,6 +20,14 @@
     newArtist.nb_album = self.artist.nb_album;
     newArtist.nb_fan= self.artist.nb_fan;
     
+    /*
+    NSError *error = nil;
+    
+    if (![newArtist.managedObjectContext save:&error]) {
+        NSLog(@"Unable to save managed object context.");
+        NSLog(@"%@, %@", error, error.localizedDescription);
+    }
+    */
     [self.db persistData];
 }
 
@@ -27,11 +35,6 @@
     [super viewDidLoad];
     
     self.db = [DBManager sharedInstance];
-    NSArray* list = [self.db fetchArtists];
-    for (Artist *a in list) {
-        NSLog(@"Into DB %@", a.name);
-    }
-    
     
     // Artist's infos
     self.artistName.text = self.artist.name;

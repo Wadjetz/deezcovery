@@ -12,6 +12,7 @@
 		749F4B0E1A8FCB3500EA02E3 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 749F4B0D1A8FCB3500EA02E3 /* CoreData.framework */; };
 		749F4B111A8FCB4700EA02E3 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 749F4B0F1A8FCB4700EA02E3 /* Model.xcdatamodeld */; };
 		749F4B141A8FCBD900EA02E3 /* Track.m in Sources */ = {isa = PBXBuildFile; fileRef = 749F4B131A8FCBD900EA02E3 /* Track.m */; };
+		74C30EB71A99C66D00321BCD /* FavorisController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74C30EB61A99C66D00321BCD /* FavorisController.m */; };
 		74EF911A1A40343C0044F2BE /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 74EF91191A40343C0044F2BE /* main.m */; };
 		74EF911D1A40343C0044F2BE /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 74EF911C1A40343C0044F2BE /* AppDelegate.m */; };
 		74EF91201A40343C0044F2BE /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74EF911F1A40343C0044F2BE /* ViewController.m */; };
@@ -45,6 +46,8 @@
 		749F4B101A8FCB4700EA02E3 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		749F4B121A8FCBD900EA02E3 /* Track.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Track.h; sourceTree = "<group>"; };
 		749F4B131A8FCBD900EA02E3 /* Track.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Track.m; sourceTree = "<group>"; };
+		74C30EB51A99C66D00321BCD /* FavorisController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FavorisController.h; sourceTree = "<group>"; };
+		74C30EB61A99C66D00321BCD /* FavorisController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FavorisController.m; sourceTree = "<group>"; };
 		74EF91141A40343C0044F2BE /* Deezcovery.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Deezcovery.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		74EF91181A40343C0044F2BE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		74EF91191A40343C0044F2BE /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -194,6 +197,8 @@
 				F7660A6A1A4F6B5C00F0A9E7 /* ArtistSearchController.m */,
 				F75357091A50570A00AD348B /* ArtistDetailController.h */,
 				F753570A1A50570A00AD348B /* ArtistDetailController.m */,
+				74C30EB51A99C66D00321BCD /* FavorisController.h */,
+				74C30EB61A99C66D00321BCD /* FavorisController.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -299,6 +304,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				745E1CAC1A99103700267653 /* Artist+JsonSerializer.m in Sources */,
+				74C30EB71A99C66D00321BCD /* FavorisController.m in Sources */,
 				74EF91201A40343C0044F2BE /* ViewController.m in Sources */,
 				F7660A6B1A4F6B5C00F0A9E7 /* ArtistSearchController.m in Sources */,
 				749F4B141A8FCBD900EA02E3 /* Track.m in Sources */,
