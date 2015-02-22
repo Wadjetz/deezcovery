@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
+#import "Artist.h"
 
 @interface DBManager : NSObject
 
@@ -23,5 +24,6 @@
 - (void)refreshObject:(NSManagedObject *)managedObject mergeChanges:(BOOL)flag;
 
 - (NSArray *)fetchArtists;
+- (Artist *)getArtist:(NSNumber *)artist_id;
 
 @end

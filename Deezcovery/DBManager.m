@@ -23,7 +23,28 @@
 @implementation DBManager
 
 - (NSArray *)fetchArtists {
-    return [self fetchEntity:@"Artist" predicate:nil prefetchedRelations:nil sortKey:@"name" ascending:YES error:nil];
+    NSError * error;
+    NSArray * result = [self fetchEntity:@"Artist" predicate:nil prefetchedRelations:nil sortKey:@"name" ascending:YES error:&error];
+    if(nil != error){
+        NSLog(@"PersistData failed with errors: \n%@\n%@", error.localizedDescription, error.userInfo);
+        return nil;
+    }
+    return result;
+}
+
+- (Artist *)getArtist:(NSNumber *)artist_id {
+    NSError * error;
+    NSPredicate * filter = [NSPredicate predicateWithFormat:@"artist_id == %@", artist_id];
+    NSArray * result = [self fetchEntity:@"Artist" predicate:filter prefetchedRelations:nil sortKey:@"name" ascending:YES error:&error];
+    if(nil != error){
+        NSLog(@"PersistData failed with errors: \n%@\n%@", error.localizedDescription, error.userInfo);
+        return nil;
+    }
+    if ([result count] > 0) {
+        return result[0];
+    } else {
+        return nil;
+    }
 }
 
 -(void)createPersistentStore{

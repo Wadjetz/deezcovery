@@ -8,18 +8,47 @@
 
 #import "FavorisController.h"
 
+#define ARTIST_FAVORIS_CELL_ID @"ArtistFavorisCellId"
+
+@interface FavorisController()
+
+@end
+
+
 @implementation FavorisController
 
 - (void)viewDidLoad {
     
     NSLog(@"Hello from favoris");
     self.db = [DBManager sharedInstance];
-
+    
+    self.tableView.delegate = self;
+    self.tableView.dataSource = self;
+    
     self.favoris = [self.db fetchArtists];
     for (Artist *a in self.favoris) {
         NSLog(@"Into DB %@", a.name);
     }
     
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [self.tableView reloadData];
+}
+
+// -- Cell selected --
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    NSLog(@"Select %@", self.favoris[indexPath.row]);
+    [self performSegueWithIdentifier:@"showFavorisArtist" sender:self.favoris[indexPath.row]];
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    // Prepare the segue, set the sended artist
+    if([segue.identifier isEqualToString:@"showFavorisArtist"]) {
+        ArtistDetailController *controller = segue.destinationViewController;
+        controller.artist = sender;
+    }
 }
 
 // -- View of a cell --

@@ -14,6 +14,7 @@
 @interface ArtistDetailController : UIViewController
 
 @property (strong, nonatomic) Artist* artist;
+@property (strong, nonatomic) Artist* dbArtist;
 
 @property (strong, nonatomic) DBManager* db;
 
@@ -21,5 +22,7 @@
 @property (strong, nonatomic) IBOutlet UIImageView *artistImage;
 @property (strong, nonatomic) IBOutlet UILabel *nbFans;
 @property (strong, nonatomic) IBOutlet UILabel *nbAlbums;
+
+@property (strong, nonatomic) IBOutlet UIButton *addFavorisAction;
 
 @end

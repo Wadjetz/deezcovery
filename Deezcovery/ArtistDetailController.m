@@ -12,23 +12,20 @@
 @implementation ArtistDetailController
 
 - (IBAction)addFavoris:(id)sender {
-    NSLog(@"Save = %@", self.artist.name);
     
-    Artist * newArtist = [self.db createManagedObjectWithClass:[Artist class]];
-    newArtist.artist_id = self.artist.artist_id;
-    newArtist.name = self.artist.name;
-    newArtist.nb_album = self.artist.nb_album;
-    newArtist.nb_fan= self.artist.nb_fan;
+    self.dbArtist = [self.db getArtist:self.artist.artist_id];
     
-    /*
-    NSError *error = nil;
-    
-    if (![newArtist.managedObjectContext save:&error]) {
-        NSLog(@"Unable to save managed object context.");
-        NSLog(@"%@, %@", error, error.localizedDescription);
+    if (self.dbArtist == nil) {
+        Artist * newArtist = [self.db createManagedObjectWithClass:[Artist class]];
+        newArtist.artist_id = self.artist.artist_id;
+        newArtist.name = self.artist.name;
+        newArtist.nb_album = self.artist.nb_album;
+        newArtist.nb_fan= self.artist.nb_fan;
+        NSLog(@"Save = %@", newArtist.name);
+        [self.db persistData];
+        [self.addFavorisAction setTitle:@"Favorized" forState:UIControlStateNormal];
+        self.addFavorisAction.enabled = NO;
     }
-    */
-    [self.db persistData];
 }
 
 - (void)viewDidLoad {
@@ -36,6 +33,16 @@
     
     self.db = [DBManager sharedInstance];
     
+    self.dbArtist = [self.db getArtist:self.artist.artist_id];
+    
+    if(self.dbArtist != nil) {
+        [self.addFavorisAction setTitle:@"Favorized" forState:UIControlStateNormal];
+        self.addFavorisAction.enabled = NO;
+    }
+    
+    NSLog(@"dbArtist = %@", self.dbArtist.name);
+    
+
     // Artist's infos
     self.artistName.text = self.artist.name;
     self.nbFans.text = [[NSString alloc] initWithFormat:@"%@", self.artist.nb_fan];

@@ -7,13 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ArtistDetailController.h"
 #import "DBManager.h"
 #import "Artist.h"
 
-@interface FavorisController : UITableViewController
+@interface FavorisController : UITableViewController <UITableViewDelegate, UITableViewDataSource>
 
 @property (strong, nonatomic) DBManager* db;
 @property (strong, nonatomic) NSArray* favoris;
 @property (strong, nonatomic) IBOutlet UITableView *view;
+@property (strong, nonatomic) IBOutlet UITableView *tableView;
 
 @end
