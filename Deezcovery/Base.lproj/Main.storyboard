@@ -129,15 +129,18 @@
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <button opaque="NO" contentMode="center" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ygO-bT-Sod">
-                                        <rect key="frame" x="0.0" y="117" width="288" height="30"/>
-                                        <state key="normal" title="Ajouter aux favoris">
-                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Favoris" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dXf-vG-WuP">
+                                        <rect key="frame" x="8" y="79" width="56" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Y7B-UQ-8xM">
+                                        <rect key="frame" x="120" y="74" width="51" height="31"/>
                                         <connections>
-                                            <action selector="addFavoris:" destination="Lmd-jA-Nfq" eventType="touchDown" id="fAj-Lg-zQf"/>
+                                            <action selector="onOfFavorisSwitch:" destination="Lmd-jA-Nfq" eventType="valueChanged" id="IrC-z7-6gM"/>
                                         </connections>
-                                    </button>
+                                    </switch>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
@@ -168,17 +171,17 @@
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="320" height="568"/>
                     <connections>
-                        <outlet property="addFavorisAction" destination="ygO-bT-Sod" id="AHi-w5-TjU"/>
                         <outlet property="artistImage" destination="YSK-kX-var" id="Fzp-3y-PhH"/>
                         <outlet property="artistName" destination="Uii-Pk-eHh" id="w3Z-h0-yiy"/>
                         <outlet property="nbAlbums" destination="GNi-dO-NbW" id="6PA-Mz-VPs"/>
                         <outlet property="nbFans" destination="nQE-7e-5sL" id="wOV-k1-Nc7"/>
+                        <outlet property="onOfFavorisSwitch" destination="Y7B-UQ-8xM" id="SeQ-kP-cdA"/>
                         <segue destination="kO4-fZ-bO4" kind="push" identifier="showTracklist" id="lfu-gW-mHV"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IGi-hU-fxe" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1878" y="113"/>
+            <point key="canvasLocation" x="1913" y="113"/>
         </scene>
         <!--Artist Track Controller-->
         <scene sceneID="29V-XT-wJp">

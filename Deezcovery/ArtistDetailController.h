@@ -23,6 +23,6 @@
 @property (strong, nonatomic) IBOutlet UILabel *nbFans;
 @property (strong, nonatomic) IBOutlet UILabel *nbAlbums;
 
-@property (strong, nonatomic) IBOutlet UIButton *addFavorisAction;
+@property (strong, nonatomic) IBOutlet UISwitch *onOfFavorisSwitch;
 
 @end

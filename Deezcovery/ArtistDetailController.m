@@ -10,21 +10,29 @@
 #import "ArtistTrackController.h"
 
 @implementation ArtistDetailController
-
-- (IBAction)addFavoris:(id)sender {
+- (IBAction)onOfFavorisSwitch:(id)sender {
     
     self.dbArtist = [self.db getArtist:self.artist.artist_id];
     
-    if (self.dbArtist == nil) {
-        Artist * newArtist = [self.db createManagedObjectWithClass:[Artist class]];
-        newArtist.artist_id = self.artist.artist_id;
-        newArtist.name = self.artist.name;
-        newArtist.nb_album = self.artist.nb_album;
-        newArtist.nb_fan= self.artist.nb_fan;
-        NSLog(@"Save = %@", newArtist.name);
-        [self.db persistData];
-        [self.addFavorisAction setTitle:@"Favorized" forState:UIControlStateNormal];
-        self.addFavorisAction.enabled = NO;
+    if(self.onOfFavorisSwitch.on) {
+        NSLog(@"on");
+        if (self.dbArtist == nil) {
+            Artist * newArtist = [self.db createManagedObjectWithClass:[Artist class]];
+            newArtist.artist_id = self.artist.artist_id;
+            newArtist.name = self.artist.name;
+            newArtist.nb_album = self.artist.nb_album;
+            newArtist.nb_fan= self.artist.nb_fan;
+            NSLog(@"Save = %@", newArtist.name);
+            [self.db persistData];
+        }
+    } else {
+        NSLog(@"of");
+        NSLog(@"Delete Favoris");
+        self.dbArtist = [self.db getArtist:self.artist.artist_id];
+        if (self.dbArtist != nil) {
+            [self.db deleteManagedObject:self.dbArtist];
+            [self.db persistData];
+        }
     }
 }
 
@@ -37,9 +45,10 @@
     
     self.dbArtist = [self.db getArtist:self.artist.artist_id];
     
-    if(self.dbArtist != nil) {
-        [self.addFavorisAction setTitle:@"Favorized" forState:UIControlStateNormal];
-        self.addFavorisAction.enabled = NO;
+    if(self.dbArtist == nil) {
+        self.onOfFavorisSwitch.on = NO;
+    } else {
+        self.onOfFavorisSwitch.on = YES;
     }
     
     NSLog(@"dbArtist = %@", self.dbArtist.name);
