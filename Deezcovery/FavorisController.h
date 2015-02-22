@@ -13,9 +13,6 @@
 
 @interface FavorisController : UITableViewController <UITableViewDelegate, UITableViewDataSource>
 
-@property (strong, nonatomic) DBManager* db;
-@property (strong, nonatomic) NSArray* favoris;
-@property (strong, nonatomic) IBOutlet UITableView *view;
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
 
 @end

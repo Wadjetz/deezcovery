@@ -8,9 +8,14 @@
 
 #import "FavorisController.h"
 
-#define ARTIST_FAVORIS_CELL_ID @"ArtistFavorisCellId"
+#define ARTIST_FAVORIS_CELL_ID     @"ArtistFavorisCellId"
+#define SEGUE_TO_DETAIL_ID         @"showFavorisArtist"
 
 @interface FavorisController()
+
+@property (strong, nonatomic) DBManager* db;
+@property (strong, nonatomic) NSMutableArray* favoris;
+@property (strong, nonatomic) Artist* selectedArtist;
 
 @end
 
@@ -25,29 +30,32 @@
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     
-    self.favoris = [self.db fetchArtists];
-    for (Artist *a in self.favoris) {
-        NSLog(@"Into DB %@", a.name);
-    }
-    
+    self.favoris = [[self.db fetchArtists] mutableCopy];
 }
 
-- (void)viewWillAppear:(BOOL)animated {
+- (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     [self.tableView reloadData];
 }
 
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+}
+
 // -- Cell selected --
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    NSLog(@"Select %@", self.favoris[indexPath.row]);
-    [self performSegueWithIdentifier:@"showFavorisArtist" sender:self.favoris[indexPath.row]];
+    NSLog(@"Fuck IOS - didSelectRowAtIndexPath");
+    self.selectedArtist = self.favoris[indexPath.row];
+    [self performSegueWithIdentifier:SEGUE_TO_DETAIL_ID sender:self];
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // Prepare the segue, set the sended artist
-    if([segue.identifier isEqualToString:@"showFavorisArtist"]) {
+    NSLog(@"Fuck IOS - prepareForSegue");
+    if([segue.identifier isEqualToString:SEGUE_TO_DETAIL_ID]) {
         ArtistDetailController *controller = segue.destinationViewController;
-        controller.artist = sender;
+        controller.artist = self.selectedArtist;
+        NSLog(@"Fuck IOS - prepareForSegue controller.artist = %@", self.selectedArtist);
     }
 }
 
@@ -55,12 +63,13 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     // Create a new cell
-    UITableViewCell *cell = [[UITableViewCell alloc] init];
+    //UITableViewCell *cell = [[UITableViewCell alloc] init];
+    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:ARTIST_FAVORIS_CELL_ID];
     
     Artist *artist = self.favoris[indexPath.row];
     
     // Configure cell
-    cell.textLabel.text = [[NSString alloc] initWithFormat:@"%@", artist.name];
+    cell.textLabel.text = artist.name;
     
     return cell;
 }
@@ -82,11 +91,7 @@
 
 // -- Number of cells --
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    
-    if(self.favoris)
-        return [self.favoris count];
-    else
-        return 0;
+    return self.favoris.count;
 }
 
 @end

@@ -69,9 +69,6 @@
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="46m-dQ-tyV" id="d7d-bP-bNS">
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
-                                <connections>
-                                    <segue destination="Lmd-jA-Nfq" kind="push" identifier="showFavorisArtist" id="GXz-1D-VgX"/>
-                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -82,6 +79,7 @@
                     <navigationItem key="navigationItem" title="Favoris" id="UF2-Le-ZOl"/>
                     <connections>
                         <outlet property="tableView" destination="pA6-qa-OPI" id="UrI-LT-7vQ"/>
+                        <segue destination="Lmd-jA-Nfq" kind="push" identifier="showFavorisArtist" id="TGn-T4-rEV"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="M6p-UT-u4T" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -291,6 +289,6 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="GXz-1D-VgX"/>
+        <segue reference="TGn-T4-rEV"/>
     </inferredMetricsTieBreakers>
 </document>

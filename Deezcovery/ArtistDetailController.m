@@ -31,6 +31,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    NSLog(@"Details viewDidLoad self.artist = %@", self.artist);
+    
     self.db = [DBManager sharedInstance];
     
     self.dbArtist = [self.db getArtist:self.artist.artist_id];
