@@ -89,7 +89,7 @@
 
 
 - (void)viewDidLoad {
-    
+    [super viewDidLoad];
     self.playingTrack = -1;
     
     // Artist's tracks

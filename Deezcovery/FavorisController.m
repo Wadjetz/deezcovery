@@ -23,7 +23,7 @@
 @implementation FavorisController
 
 - (void)viewDidLoad {
-    
+    [super viewDidLoad];
     NSLog(@"Hello from favoris");
     self.db = [DBManager sharedInstance];
     
@@ -34,7 +34,9 @@
 }
 
 - (void)viewWillAppear:(BOOL)animated{
+    NSLog(@"FavorisController viewWillAppear");
     [super viewWillAppear:animated];
+    self.favoris = [[self.db fetchArtists] mutableCopy];
     [self.tableView reloadData];
 }
 
