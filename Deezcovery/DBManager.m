@@ -26,10 +26,11 @@
     if (track) {
         Track * newTrack = [self createManagedObjectWithClass:[Track class]];
         newTrack.track_id = track.track_id;
-        newTrack.name = track.name;
-        newTrack.path = track.path;
+        newTrack.title = track.title;
+        newTrack.preview = track.preview;
+        newTrack.album_title = track.album_title;
         newTrack.artist_id = artist.artist_id;
-        NSLog(@"Save = %@", newTrack.name);
+        NSLog(@"Save = %@", newTrack.title);
         [self persistData];
     } else {
         NSLog(@"No Save track nil");

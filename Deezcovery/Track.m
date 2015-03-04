@@ -12,8 +12,9 @@
 @implementation Track
 
 @dynamic track_id;
-@dynamic name;
-@dynamic path;
+@dynamic title;
+@dynamic preview;
+@dynamic album_title;
 @dynamic artist_id;
 
 @end

@@ -19,20 +19,22 @@
 
 // -- View of a cell --
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    
+
     static int index =  0;
-    
+
     // Create a new cell
     UITableViewCell *cell = [[UITableViewCell alloc] init];
-    
-    NSDictionary *track = self.tracks[indexPath.row];
-    
+
+    Track *track = self.tracks[indexPath.row];
+
     // Configure cell
-    cell.textLabel.text = [[NSString alloc] initWithFormat:@"%@ - (%@)", track[@"title"], track[@"album"][@"title"]];
+    //cell.textLabel.text = [[NSString alloc] initWithFormat:@"%@ - (%@)", track[@"title"], track[@"album"][@"title"]];
     cell.imageView.image = [UIImage imageNamed:@"play"];
+    cell.textLabel.text = [[NSString alloc] initWithFormat:@"%@ - (%@)", track.title, track.album_title];
+
     if(++index % 2 == 0)
         cell.backgroundColor = [UIColor colorWithRed:0.99 green:0.99 blue:0.99 alpha:1.0];
-    
+
     return cell;
 }
 
@@ -43,7 +45,7 @@
 
 // -- Number of cells --
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    
+
     if(self.tracks)
         return [self.tracks count];
     else
@@ -62,9 +64,9 @@
 
 // -- Cell selected --
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    
+
     UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
-    
+
     if(self.playingTrack == indexPath.row) {
         if(self.player.playing) {
             [self.player stop];
@@ -77,28 +79,29 @@
             cell.imageView.image = [UIImage imageNamed:@"pause"];
         }
     } else {
-        
+
         // Get the previous cell
         UITableViewCell *oldCell = [tableView cellForRowAtIndexPath: [NSIndexPath indexPathForRow:self.playingTrack inSection:0]];
         if(oldCell) {
             oldCell.imageView.image = [UIImage imageNamed:@"play"];
         }
-        
+
         // Prepare the new cell
         self.playingTrack = indexPath.row;
         cell.imageView.image = [UIImage imageNamed:@"loading"];
-        
+
         // Stop the old player
         if(self.player) {
             [self.player stop];
         }
-        
+
         // Load the track
         NSLog(@"Loading music");
         dispatch_async(dispatch_get_global_queue(0, 0), ^{
-            NSURL *url = [[NSURL alloc] initWithString:self.tracks[indexPath.row][@"preview"]];
+            Track * track = self.tracks[indexPath.row];
+            NSURL *url = [[NSURL alloc] initWithString:track.preview];
             NSData *data = [[NSData alloc] initWithContentsOfURL:url];
-            
+
             if(data) {
                 dispatch_async(dispatch_get_main_queue(), ^{
                     // Create a new player
@@ -113,28 +116,34 @@
             }
         });
     }
-    
-}
 
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.playingTrack = -1;
-    
+    self.db = [DBManager sharedInstance];
+    self.dbArtist = [self.db getArtist:self.artist.artist_id];
+    self.tracks = [@[] mutableCopy];
+
     // Artist's tracks
     dispatch_async(dispatch_get_global_queue(0, 0), ^{
         NSData *data = [[NSData alloc] initWithContentsOfURL:[NSURL URLWithString:[DeezerService getTracksLink:self.artist.artist_id]]];
-        
+
         if(data) {
             // Fill the artists list with the results
             NSDictionary *results = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:nil];
             if([results objectForKey:@"data"]) {
-                self.tracks = (NSArray*)results[@"data"];
-                NSLog(@"%lu", self.tracks.count);
+                NSArray *jsonTracks = (NSArray*)results[@"data"];
+                for (id item in jsonTracks) {
+                    Track * track = [Track trackFromJson:item];
+                    [self.tracks addObject:track];
+                    NSLog(@"%@", track.title);
+                }
             } else {
-                self.tracks = nil;
+                self.tracks = [self.dbArtist mutableCopy];
             }
-            
+
             dispatch_async(dispatch_get_main_queue(), ^{
                 [self.view reloadData];
             });
@@ -142,7 +151,7 @@
             NSLog(@"Error loading tracks");
         }
     });
-    
+
 }
 
 // -- Called when the player ends the music --
