@@ -14,5 +14,6 @@
 + (NSString *)getPhotoLink:(NSNumber*)artist_id;
 + (NSString *)getTracksLink:(NSNumber*)artist_id;
 + (NSString *)getArtistLink:(NSNumber*)artist_id;
++ (NSString *)getArtistsRelated:(NSNumber*)artist_id;
 
 @end
