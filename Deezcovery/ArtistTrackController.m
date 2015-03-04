@@ -39,8 +39,8 @@
     
     Track *track = self.tracks[indexPath.row];
     
-    NSData *data = [[NSData alloc] initWithContentsOfURL:[NSURL URLWithString:track.image]];
     dispatch_async(dispatch_get_global_queue(0, 0), ^{
+        NSData *data = [[NSData alloc] initWithContentsOfURL:[NSURL URLWithString:track.image]];
         [cell.customTrackImage setImage:[[UIImage alloc] initWithData:data scale:2.0]];
     });
 
