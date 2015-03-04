@@ -28,7 +28,7 @@
         newTrack.track_id = track.track_id;
         newTrack.name = track.name;
         newTrack.path = track.path;
-        [newTrack setValue:artist forKeyPath:@"artists"];
+        newTrack.artist_id = artist.artist_id;
         NSLog(@"Save = %@", newTrack.name);
         [self persistData];
     } else {
@@ -38,7 +38,8 @@
 
 - (NSArray *)getTracks:(Artist *)artist {
     NSError * error;
-    NSArray * result = [self fetchEntity:@"Track" predicate:nil prefetchedRelations:nil sortKey:nil ascending:YES error:&error];
+    NSPredicate * filter = [NSPredicate predicateWithFormat:@"artist_id == %@", artist.artist_id];
+    NSArray * result = [self fetchEntity:@"Track" predicate:filter prefetchedRelations:nil sortKey:nil ascending:YES error:&error];
     if(nil != error){
         NSLog(@"PersistData failed with errors: \n%@\n%@", error.localizedDescription, error.userInfo);
         return nil;

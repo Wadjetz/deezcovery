@@ -15,5 +15,6 @@
 @property (nonatomic, retain) NSNumber * track_id;
 @property (nonatomic, retain) NSString * name;
 @property (nonatomic, retain) NSString * path;
+@property (nonatomic, retain) NSNumber * artist_id;
 
 @end

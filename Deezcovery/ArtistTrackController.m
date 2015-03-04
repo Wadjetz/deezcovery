@@ -128,7 +128,7 @@
             NSDictionary *results = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:nil];
             if([results objectForKey:@"data"]) {
                 self.tracks = (NSArray*)results[@"data"];
-                NSLog(@"%@", self.tracks);
+                NSLog(@"%lu", self.tracks.count);
             } else {
                 self.tracks = nil;
             }

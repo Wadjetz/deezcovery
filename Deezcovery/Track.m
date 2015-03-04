@@ -14,5 +14,6 @@
 @dynamic track_id;
 @dynamic name;
 @dynamic path;
+@dynamic artist_id;
 
 @end

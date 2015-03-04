@@ -21,7 +21,7 @@
                        with:self.currentArtistName
                        with:self.currentArtistNbAlboms
                        with:self.currentArtistNbFan];
-        /*
+        
         if (self.dbArtist == nil) {
             
             dispatch_async(dispatch_get_global_queue(0, 0), ^{
@@ -44,7 +44,6 @@
                 }
             });
         }
-         */
     } else {
         NSLog(@"Delete Favoris");
         self.dbArtist = [self.db getArtist:self.currentArtistId];
