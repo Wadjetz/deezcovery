@@ -20,6 +20,8 @@
 // -- View of a cell --
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
+    static int index =  0;
+    
     // Create a new cell
     UITableViewCell *cell = [[UITableViewCell alloc] init];
     
@@ -27,7 +29,9 @@
     
     // Configure cell
     cell.textLabel.text = [[NSString alloc] initWithFormat:@"%@ - (%@)", track[@"title"], track[@"album"][@"title"]];
-        
+    if(++index % 2 == 0)
+        cell.backgroundColor = [UIColor colorWithRed:0.99 green:0.99 blue:0.99 alpha:1.0];
+    
     return cell;
 }
 
@@ -58,33 +62,57 @@
 // -- Cell selected --
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
+    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+    
     if(self.playingTrack == indexPath.row) {
         if(self.player.playing) {
             [self.player stop];
             NSLog(@"Stopping music");
+            cell.textLabel.text = [[NSString alloc]initWithFormat:@"\u2B07 %@", [cell.textLabel.text substringFromIndex:2]];
         } else {
             [self.player play];
             NSLog(@"Resuming music");
+            cell.textLabel.text = [[NSString alloc]initWithFormat:@"\u25B6 %@", [cell.textLabel.text substringFromIndex:2]];
         }
     } else {
+        
+        // Get the previous cell
+        UITableViewCell *oldCell = [tableView cellForRowAtIndexPath: [NSIndexPath indexPathForRow:self.playingTrack inSection:0]];
+        if(oldCell) {
+            oldCell.textLabel.text = [oldCell.textLabel.text substringFromIndex:2];
+        }
+        
+        // Prepare the new cell
         self.playingTrack = indexPath.row;
-    
+        cell.textLabel.text = [[NSString alloc]initWithFormat:@"\U0001F501 %@", cell.textLabel.text];
+        
         // Stop the old player
         if(self.player) {
             [self.player stop];
         }
-    
-        // Create a new player
-        NSURL *url = [[NSURL alloc] initWithString:self.tracks[indexPath.row][@"preview"]];
-        NSData *sound = [NSData dataWithContentsOfURL:url];
         
-        self.player = [[AVAudioPlayer alloc] initWithData:sound error:nil];
-    
-        [self.player play];
-        NSLog(@"Starting playing music");
+        // Load the track
+        NSLog(@"Loading music");
+        dispatch_async(dispatch_get_global_queue(0, 0), ^{
+            NSURL *url = [[NSURL alloc] initWithString:self.tracks[indexPath.row][@"preview"]];
+            NSData *data = [[NSData alloc] initWithContentsOfURL:url];
+            
+            if(data) {
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    // Create a new player
+                    self.player = [[AVAudioPlayer alloc] initWithData:data error:nil];
+                    self.player.delegate = self;
+                    [self.player play];
+                    NSLog(@"Starting playing music");
+                    cell.textLabel.text = [[NSString alloc]initWithFormat:@"\u25B6 %@", [cell.textLabel.text substringFromIndex:3]];
+                });
+            } else {
+                NSLog(@"Error loading image");
+            }
+        });
     }
+    
 }
-
 
 
 - (void)viewDidLoad {
@@ -113,6 +141,16 @@
         }
     });
     
+}
+
+// -- Called when the player ends the music --
+- (void)audioPlayerDidFinishPlaying:(AVAudioPlayer *)player successfully:(BOOL)flag {
+    UITableViewCell *oldCell = [self.tableView cellForRowAtIndexPath: [NSIndexPath indexPathForRow:self.playingTrack inSection:0]];
+    self.playingTrack = -1;
+    if(oldCell) {
+        oldCell.textLabel.text = [oldCell.textLabel.text substringFromIndex:2];
+    }
+    NSLog(@"Music ended");
 }
 
 @end

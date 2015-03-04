@@ -14,10 +14,12 @@
 #import "Track+JsonSerializer.h"
 #import "DeezerService.h"
 
-@interface ArtistTrackController : UITableViewController
+@interface ArtistTrackController : UITableViewController <AVAudioPlayerDelegate>
 
 @property (strong, nonatomic) Artist* artist;
 @property (strong, nonatomic) NSArray* tracks;
 @property (strong, nonatomic) IBOutlet UITableView *view;
+
+- (void)audioPlayerDidFinishPlaying:(AVAudioPlayer *)player successfully:(BOOL)flag;
 
 @end

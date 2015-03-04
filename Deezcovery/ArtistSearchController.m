@@ -65,13 +65,18 @@ static NSString *CellIdentifier = @"CellIdentifier";
 // -- View of a cell --
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
+    static int index = 0;
+    
     // Create a new cell
     UITableViewCell *cell = [[UITableViewCell alloc] init];
     Artist* artist = self.artistsList[indexPath.row];
     
-    if(indexPath.row > 0)
+    if(indexPath.row > 0) {
         cell.textLabel.text = [[NSString alloc] initWithFormat:@"%@ - (%@ fans)", artist.name, artist.nb_fan];
-    else {
+        if(++index % 2 == 0)
+            cell.backgroundColor = [UIColor colorWithRed:0.99 green:0.99 blue:0.99 alpha:1.0];
+    } else {
+        index = 0;
         cell.textLabel.text = [[NSString alloc] initWithFormat:@"Similar to %@ :", artist.name];
         cell.textLabel.font = [UIFont boldSystemFontOfSize:18.0];
         cell.backgroundColor = [UIColor lightGrayColor];
