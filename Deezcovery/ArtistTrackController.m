@@ -35,7 +35,14 @@
         cell = [[CustomTrackCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CUSTOM_TRACK_CELL];
     }
     
+    
+    
     Track *track = self.tracks[indexPath.row];
+    
+    NSData *data = [[NSData alloc] initWithContentsOfURL:[NSURL URLWithString:track.image]];
+    dispatch_async(dispatch_get_global_queue(0, 0), ^{
+        [cell.customTrackImage setImage:[[UIImage alloc] initWithData:data scale:2.0]];
+    });
 
     // Configure cell
     //cell.textLabel.text = [[NSString alloc] initWithFormat:@"%@ - (%@)", track[@"title"], track[@"album"][@"title"]];
@@ -161,7 +168,7 @@
                     for (id item in jsonTracks) {
                         Track * track = [Track trackFromJson:item];
                         [tracksTmp addObject:track];
-                        NSLog(@"%@", track.title);
+                        NSLog(@"%@", item);
                     }
                     self.tracks = [NSArray arrayWithArray:tracksTmp];
                 } else {
