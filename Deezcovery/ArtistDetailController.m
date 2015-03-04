@@ -69,7 +69,7 @@
     [super viewDidLoad];
     self.db = [DBManager sharedInstance];
     
-    NSLog(@"getTracks ==> %@", [self.db getTracks:self.artist]);
+    //NSLog(@"getTracks ==> %@", [self.db getTracks:self.artist]);
     
     self.dbArtist = [self.db getArtist:self.artist.artist_id];
     

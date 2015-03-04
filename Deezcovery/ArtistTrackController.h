@@ -21,11 +21,16 @@
 @property (strong, nonatomic) Artist* dbArtist;            // Artist saved
 @property (strong, nonatomic) NSArray* tracks;             // List of tracks
 @property (strong, nonatomic) IBOutlet UITableView *view;  // Table view used to display the tracks
+@property (strong, nonatomic) IBOutlet UIButton *playAllButton;
+
 @property (assign, nonatomic) BOOL offline;
 
 @property (strong, nonatomic) DBManager* db;  // Database manager
 
 // -- Delegate for the audio player --
 - (void)audioPlayerDidFinishPlaying:(AVAudioPlayer *)player successfully:(BOOL)flag;
+- (void)startPlayAll;
+- (void)stopPlayAll;
+- (void)play:(NSData *)data;
 
 @end

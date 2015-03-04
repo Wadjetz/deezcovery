@@ -12,6 +12,8 @@
 
 @property AVAudioPlayer *player; // Audio player
 @property long playingTrack;     // Number of the track currently playing
+@property long allPlayingTrack;
+@property BOOL playAll;
 
 @end
 
@@ -64,7 +66,6 @@
 
 // -- Cell selected --
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-
     UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
 
     if(self.playingTrack == indexPath.row) {
@@ -110,9 +111,7 @@
             if(data) {
                 dispatch_async(dispatch_get_main_queue(), ^{
                     // Create a new player
-                    self.player = [[AVAudioPlayer alloc] initWithData:data error:nil];
-                    self.player.delegate = self;
-                    [self.player play];
+                    [self play:data];
                     NSLog(@"Starting playing music");
                     cell.imageView.image = [UIImage imageNamed:@"pause"];
                 });
@@ -129,6 +128,8 @@
     self.playingTrack = -1;
     self.db = [DBManager sharedInstance];
     self.dbArtist = [self.db getArtist:self.artist.artist_id];
+    self.allPlayingTrack = 0;
+    self.playAll = NO;
     
     if (self.dbArtist == nil) {
         self.offline = NO;
@@ -167,6 +168,50 @@
     NSLog(@"offline = %d", self.offline);
 }
 
+
+- (IBAction)playAll:(id)sender {
+    if (self.playAll == NO) {
+        self.playAll = YES;
+        [self startPlayAll];
+    } else {
+        self.playAll = NO;
+        [self stopPlayAll];
+    }
+}
+
+- (void)startPlayAll {
+    NSLog(@"startPlayAll track=%li play=%d tracksTotal=%lu", self.allPlayingTrack, self.playAll, (unsigned long)self.tracks.count);
+    if (self.allPlayingTrack > (self.tracks.count - 1)) {
+        NSLog(@"Reset");
+        self.allPlayingTrack = 0;
+    }
+    
+    NSLog(@"startPlayAll track=%li paly=%d", self.allPlayingTrack, self.playAll);
+    if (self.playAll == YES) {
+        
+        NSLog(@"GO");
+        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:self.allPlayingTrack inSection:0];
+        [self.tableView selectRowAtIndexPath:indexPath
+                                    animated:YES
+                              scrollPosition:UITableViewScrollPositionNone];
+        [self tableView:self.tableView didSelectRowAtIndexPath:indexPath];
+        
+    }
+}
+
+- (void)stopPlayAll {
+    if(self.player.playing) {
+        [self.player stop];
+    }
+}
+
+- (void)play:(NSData *)data {
+    NSLog(@"PLAY");
+    self.player = [[AVAudioPlayer alloc] initWithData:data error:nil];
+    self.player.delegate = self;
+    [self.player play];
+}
+
 // -- Called when the player ends the music --
 - (void)audioPlayerDidFinishPlaying:(AVAudioPlayer *)player successfully:(BOOL)flag {
     UITableViewCell *oldCell = [self.tableView cellForRowAtIndexPath: [NSIndexPath indexPathForRow:self.playingTrack inSection:0]];
@@ -174,6 +219,8 @@
     if(oldCell) {
         oldCell.imageView.image = [UIImage imageNamed:@"play"];
     }
+    self.allPlayingTrack++;
+    [self startPlayAll];
     NSLog(@"Music ended");
 }
 
