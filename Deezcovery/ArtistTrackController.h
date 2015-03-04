@@ -21,6 +21,7 @@
 @property (strong, nonatomic) Artist* dbArtist;
 @property (strong, nonatomic) NSArray * tracks;
 @property (strong, nonatomic) IBOutlet UITableView *view;
+@property (assign, nonatomic) BOOL offline;
 
 @property (strong, nonatomic) DBManager* db;
 

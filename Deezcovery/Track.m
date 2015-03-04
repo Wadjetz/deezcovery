@@ -14,6 +14,7 @@
 @dynamic track_id;
 @dynamic title;
 @dynamic preview;
+@dynamic preview_data;
 @dynamic album_title;
 @dynamic artist_id;
 

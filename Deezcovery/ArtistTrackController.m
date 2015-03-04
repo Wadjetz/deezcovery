@@ -98,10 +98,15 @@
         // Load the track
         NSLog(@"Loading music");
         dispatch_async(dispatch_get_global_queue(0, 0), ^{
+            NSData *data = nil;
             Track * track = self.tracks[indexPath.row];
-            NSURL *url = [[NSURL alloc] initWithString:track.preview];
-            NSData *data = [[NSData alloc] initWithContentsOfURL:url];
-
+            if (self.offline == YES) {
+                data = track.preview_data;
+            } else {
+                NSURL *url = [[NSURL alloc] initWithString:track.preview];
+                data = [[NSData alloc] initWithContentsOfURL:url];
+            }
+            
             if(data) {
                 dispatch_async(dispatch_get_main_queue(), ^{
                     // Create a new player
@@ -112,7 +117,7 @@
                     cell.imageView.image = [UIImage imageNamed:@"pause"];
                 });
             } else {
-                NSLog(@"Error loading image");
+                NSLog(@"Error loading data");
             }
         });
     }
@@ -126,6 +131,7 @@
     self.dbArtist = [self.db getArtist:self.artist.artist_id];
     
     if (self.dbArtist == nil) {
+        self.offline = NO;
         // Artist's tracks
         dispatch_async(dispatch_get_global_queue(0, 0), ^{
             NSData *data = [[NSData alloc] initWithContentsOfURL:[NSURL URLWithString:[DeezerService getTracksLink:self.artist.artist_id]]];
@@ -143,6 +149,7 @@
                     }
                     self.tracks = [NSArray arrayWithArray:tracksTmp];
                 } else {
+                    self.offline = YES;
                     self.tracks = [self.db getTracks:self.artist];
                 }
                 
@@ -154,9 +161,10 @@
             }
         });
     } else {
+        self.offline = YES;
         self.tracks = [self.db getTracks:self.dbArtist];
     }
-    
+    NSLog(@"offline = %d", self.offline);
 }
 
 // -- Called when the player ends the music --
