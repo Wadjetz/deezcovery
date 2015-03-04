@@ -27,6 +27,7 @@
             track.preview = json[key];
         } else if ([key isEqualToString:@"album"]) {
             track.album_title = json[key][@"title"];
+            track.image = json[key][@"cover"];
         }
     }
     

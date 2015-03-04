@@ -7,6 +7,9 @@
 //
 
 #import "ArtistTrackController.h"
+#import "CustomTrackCell.h"
+#define CUSTOM_TRACK_CELL  @"customTrackCell"
+
 
 @interface ArtistTrackController()
 
@@ -20,24 +23,43 @@
 @implementation ArtistTrackController
 
 // -- View of a cell --
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+- (CustomTrackCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
 
     static int index =  0;
 
     // Create a new cell
-    UITableViewCell *cell = [[UITableViewCell alloc] init];
-
+    CustomTrackCell *cell = [tableView dequeueReusableCellWithIdentifier:CUSTOM_TRACK_CELL];
+    
+    if (cell == nil) {
+        //cell = [[CustomTrackCell alloc] init]; // or your custom initialization
+        cell = [[CustomTrackCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CUSTOM_TRACK_CELL];
+    }
+    
+    
+    
     Track *track = self.tracks[indexPath.row];
+    
+    dispatch_async(dispatch_get_global_queue(0, 0), ^{
+        NSData *data = [[NSData alloc] initWithContentsOfURL:[NSURL URLWithString:track.image]];
+        [cell.customTrackImage setImage:[[UIImage alloc] initWithData:data scale:2.0]];
+    });
 
     // Configure cell
     //cell.textLabel.text = [[NSString alloc] initWithFormat:@"%@ - (%@)", track[@"title"], track[@"album"][@"title"]];
-    cell.imageView.image = [UIImage imageNamed:@"play"];
-    cell.textLabel.text = [[NSString alloc] initWithFormat:@"%@ - (%@)", track.title, track.album_title];
+    cell.customImageControl.image = [UIImage imageNamed:@"play"];
+    cell.customTitle.text = track.title;
+    cell.customInfo.text = track.album_title;
+    
 
     if(++index % 2 == 0)
         cell.backgroundColor = [UIColor colorWithRed:0.99 green:0.99 blue:0.99 alpha:1.0];
 
     return cell;
+}
+
+- (void)tableView:(UITableView *)tableView willDisplayCell:(CustomTrackCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
+    Track * track = [self.tracks objectAtIndex:indexPath.row];
+    cell.customTitle.text = track.title;
 }
 
 // -- Number of sections in the table view --
@@ -66,30 +88,30 @@
 
 // -- Cell selected --
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
-
+    CustomTrackCell *cell = (CustomTrackCell*)[tableView cellForRowAtIndexPath:indexPath];
+    self.allPlayingTrack = indexPath.row;
     if(self.playingTrack == indexPath.row) {
         if(self.player.playing) {
             [self.player stop];
             NSLog(@"Stopping music");
             
-            cell.imageView.image = [UIImage imageNamed:@"play"];
+            cell.customImageControl.image = [UIImage imageNamed:@"play"];
         } else {
             [self.player play];
             NSLog(@"Resuming music");
-            cell.imageView.image = [UIImage imageNamed:@"pause"];
+            cell.customImageControl.image = [UIImage imageNamed:@"pause"];
         }
     } else {
 
         // Get the previous cell
-        UITableViewCell *oldCell = [tableView cellForRowAtIndexPath: [NSIndexPath indexPathForRow:self.playingTrack inSection:0]];
+        CustomTrackCell *oldCell = (CustomTrackCell*)[tableView cellForRowAtIndexPath: [NSIndexPath indexPathForRow:self.playingTrack inSection:0]];
         if(oldCell) {
-            oldCell.imageView.image = [UIImage imageNamed:@"play"];
+            oldCell.customImageControl.image = [UIImage imageNamed:@"play"];
         }
 
         // Prepare the new cell
         self.playingTrack = indexPath.row;
-        cell.imageView.image = [UIImage imageNamed:@"loading"];
+        cell.customImageControl.image = [UIImage imageNamed:@"loading"];
 
         // Stop the old player
         if(self.player) {
@@ -113,7 +135,7 @@
                     // Create a new player
                     [self play:data];
                     NSLog(@"Starting playing music");
-                    cell.imageView.image = [UIImage imageNamed:@"pause"];
+                    cell.customImageControl.image = [UIImage imageNamed:@"pause"];
                 });
             } else {
                 NSLog(@"Error loading data");
@@ -146,7 +168,7 @@
                     for (id item in jsonTracks) {
                         Track * track = [Track trackFromJson:item];
                         [tracksTmp addObject:track];
-                        NSLog(@"%@", track.title);
+                        NSLog(@"%@", item);
                     }
                     self.tracks = [NSArray arrayWithArray:tracksTmp];
                 } else {
@@ -214,14 +236,16 @@
 
 // -- Called when the player ends the music --
 - (void)audioPlayerDidFinishPlaying:(AVAudioPlayer *)player successfully:(BOOL)flag {
-    UITableViewCell *oldCell = [self.tableView cellForRowAtIndexPath: [NSIndexPath indexPathForRow:self.playingTrack inSection:0]];
+    CustomTrackCell *oldCell = (CustomTrackCell*)[self.tableView cellForRowAtIndexPath: [NSIndexPath indexPathForRow:self.playingTrack inSection:0]];
     self.playingTrack = -1;
     if(oldCell) {
-        oldCell.imageView.image = [UIImage imageNamed:@"play"];
+        oldCell.customImageControl.image = [UIImage imageNamed:@"play"];
     }
     self.allPlayingTrack++;
     [self startPlayAll];
     NSLog(@"Music ended");
 }
+
+
 
 @end

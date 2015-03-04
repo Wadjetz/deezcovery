@@ -31,6 +31,7 @@
         newTrack.album_title = track.album_title;
         newTrack.artist_id = artist.artist_id;
         newTrack.preview_data = track.preview_data;
+        newTrack.image = track.image;
         NSLog(@"Save = %@", newTrack.title);
         [self persistData];
     } else {

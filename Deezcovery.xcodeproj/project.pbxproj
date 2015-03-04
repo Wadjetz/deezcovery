@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		742FFD291AA79907007C5ABD /* CustomTrackCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 742FFD271AA79907007C5ABD /* CustomTrackCell.m */; };
 		745E1CAC1A99103700267653 /* Artist+JsonSerializer.m in Sources */ = {isa = PBXBuildFile; fileRef = 745E1CAB1A99103700267653 /* Artist+JsonSerializer.m */; };
 		745E1CAF1A9916B500267653 /* DeezerService.m in Sources */ = {isa = PBXBuildFile; fileRef = 745E1CAE1A9916B500267653 /* DeezerService.m */; };
 		749F4B0E1A8FCB3500EA02E3 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 749F4B0D1A8FCB3500EA02E3 /* CoreData.framework */; };
@@ -38,6 +39,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		742FFD261AA79907007C5ABD /* CustomTrackCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomTrackCell.h; sourceTree = "<group>"; };
+		742FFD271AA79907007C5ABD /* CustomTrackCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomTrackCell.m; sourceTree = "<group>"; };
 		745E1CAA1A99103700267653 /* Artist+JsonSerializer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Artist+JsonSerializer.h"; sourceTree = "<group>"; };
 		745E1CAB1A99103700267653 /* Artist+JsonSerializer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Artist+JsonSerializer.m"; sourceTree = "<group>"; };
 		745E1CAD1A9916B500267653 /* DeezerService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeezerService.h; sourceTree = "<group>"; };
@@ -116,6 +119,8 @@
 			children = (
 				74EF91211A40343C0044F2BE /* Main.storyboard */,
 				74EF91261A40343C0044F2BE /* LaunchScreen.xib */,
+				742FFD261AA79907007C5ABD /* CustomTrackCell.h */,
+				742FFD271AA79907007C5ABD /* CustomTrackCell.m */,
 			);
 			name = ui;
 			sourceTree = "<group>";
@@ -321,6 +326,7 @@
 				F78A9F271A575BBB00911F2D /* DBManager.m in Sources */,
 				F753570B1A50570A00AD348B /* ArtistDetailController.m in Sources */,
 				74EF911D1A40343C0044F2BE /* AppDelegate.m in Sources */,
+				742FFD291AA79907007C5ABD /* CustomTrackCell.m in Sources */,
 				749F4B111A8FCB4700EA02E3 /* Model.xcdatamodeld in Sources */,
 				F7660A661A4EF8F900F0A9E7 /* Artist.m in Sources */,
 				74EF911A1A40343C0044F2BE /* main.m in Sources */,

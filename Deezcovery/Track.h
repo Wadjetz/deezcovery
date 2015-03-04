@@ -18,5 +18,6 @@
 @property (nonatomic, retain) NSData * preview_data;    // Preview data
 @property (nonatomic, retain) NSString * album_title;   // The track album's title
 @property (nonatomic, retain) NSNumber * artist_id;     // The artist's ID
+@property (nonatomic, retain) NSString * image;         // The image URL
 
 @end
