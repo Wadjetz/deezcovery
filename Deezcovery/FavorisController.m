@@ -59,10 +59,9 @@
 // -- View of a cell --
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    static int index = 0;
+    static int index;
     
     // Create a new cell
-    //UITableViewCell *cell = [[UITableViewCell alloc] init];
     UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:ARTIST_FAVORIS_CELL_ID];
     
     Artist *artist = self.favoris[indexPath.row];
@@ -71,7 +70,8 @@
     cell.textLabel.text = artist.name;
     if(++index % 2 == 0)
         cell.backgroundColor = [UIColor colorWithRed:0.99 green:0.99 blue:0.99 alpha:1.0];
-    
+    else
+        cell.backgroundColor = [UIColor colorWithRed:1 green:1 blue:1 alpha:0];
     
     return cell;
 }
