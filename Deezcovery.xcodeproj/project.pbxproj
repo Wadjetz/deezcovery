@@ -24,6 +24,7 @@
 		F7660A661A4EF8F900F0A9E7 /* Artist.m in Sources */ = {isa = PBXBuildFile; fileRef = F7660A651A4EF8F900F0A9E7 /* Artist.m */; };
 		F7660A6B1A4F6B5C00F0A9E7 /* ArtistSearchController.m in Sources */ = {isa = PBXBuildFile; fileRef = F7660A6A1A4F6B5C00F0A9E7 /* ArtistSearchController.m */; };
 		F78A9F271A575BBB00911F2D /* DBManager.m in Sources */ = {isa = PBXBuildFile; fileRef = F78A9F261A575BBB00911F2D /* DBManager.m */; };
+		F78A9F891AA73BB000911F2D /* 01838_motionsenses_1920x1080.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F78A9F881AA73BB000911F2D /* 01838_motionsenses_1920x1080.jpg */; };
 		F79992691A520E2400D17464 /* ArtistTrackController.m in Sources */ = {isa = PBXBuildFile; fileRef = F79992681A520E2400D17464 /* ArtistTrackController.m */; };
 /* End PBXBuildFile section */
 
@@ -69,6 +70,7 @@
 		F7660A6A1A4F6B5C00F0A9E7 /* ArtistSearchController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ArtistSearchController.m; sourceTree = "<group>"; };
 		F78A9F251A575BBB00911F2D /* DBManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBManager.h; sourceTree = "<group>"; };
 		F78A9F261A575BBB00911F2D /* DBManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBManager.m; sourceTree = "<group>"; };
+		F78A9F881AA73BB000911F2D /* 01838_motionsenses_1920x1080.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 01838_motionsenses_1920x1080.jpg; sourceTree = "<group>"; };
 		F79992671A520E2400D17464 /* ArtistTrackController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ArtistTrackController.h; sourceTree = "<group>"; };
 		F79992681A520E2400D17464 /* ArtistTrackController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ArtistTrackController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -114,6 +116,7 @@
 		74C30EB81A9A039300321BCD /* ui */ = {
 			isa = PBXGroup;
 			children = (
+				F78A9F881AA73BB000911F2D /* 01838_motionsenses_1920x1080.jpg */,
 				74EF91211A40343C0044F2BE /* Main.storyboard */,
 				74EF91261A40343C0044F2BE /* LaunchScreen.xib */,
 			);
@@ -293,6 +296,7 @@
 			files = (
 				74EF91231A40343C0044F2BE /* Main.storyboard in Resources */,
 				74EF91281A40343C0044F2BE /* LaunchScreen.xib in Resources */,
+				F78A9F891AA73BB000911F2D /* 01838_motionsenses_1920x1080.jpg in Resources */,
 				74EF91251A40343C0044F2BE /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

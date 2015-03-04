@@ -74,12 +74,11 @@
             [self.player stop];
         }
     
-        // Create a newe player
+        // Create a new player
         NSURL *url = [[NSURL alloc] initWithString:self.tracks[indexPath.row][@"preview"]];
         NSData *sound = [NSData dataWithContentsOfURL:url];
         
         self.player = [[AVAudioPlayer alloc] initWithData:sound error:nil];
-        //self.player.delegate = self;
     
         [self.player play];
         NSLog(@"Starting playing music");
