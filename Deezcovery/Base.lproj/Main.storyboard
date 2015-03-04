@@ -204,21 +204,18 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" id="Kmf-eD-Z3Z">
-                        <barButtonItem key="rightBarButtonItem" style="plain" id="WIn-1a-K8o">
-                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="PSD-gm-Cev">
-                                <rect key="frame" x="-23" y="-15" width="71" height="30"/>
+                        <barButtonItem key="rightBarButtonItem" style="plain" id="jNJ-6i-4Lg">
+                            <switch key="customView" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="nOr-z9-7d3">
+                                <rect key="frame" x="-25" y="-15" width="51" height="31"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Play All">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
                                 <connections>
-                                    <action selector="playAll:" destination="kO4-fZ-bO4" eventType="touchUpInside" id="KnR-y0-qLV"/>
+                                    <action selector="playAllTracks:" destination="kO4-fZ-bO4" eventType="valueChanged" id="bS2-d1-x5p"/>
                                 </connections>
-                            </button>
+                            </switch>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="playAllButton" destination="PSD-gm-Cev" id="nEt-Cr-QnM"/>
+                        <outlet property="playAllSwitch" destination="nOr-z9-7d3" id="2GQ-x2-7ds"/>
                         <outlet property="view" destination="BpS-ik-FCd" id="AZH-4V-hdo"/>
                     </connections>
                 </tableViewController>

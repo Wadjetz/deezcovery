@@ -168,9 +168,8 @@
     NSLog(@"offline = %d", self.offline);
 }
 
-
-- (IBAction)playAll:(id)sender {
-    if (self.playAll == NO) {
+- (IBAction)playAllTracks:(id)sender {
+    if(self.playAllSwitch.on) {
         self.playAll = YES;
         [self startPlayAll];
     } else {
@@ -178,6 +177,7 @@
         [self stopPlayAll];
     }
 }
+
 
 - (void)startPlayAll {
     NSLog(@"startPlayAll track=%li play=%d tracksTotal=%lu", self.allPlayingTrack, self.playAll, (unsigned long)self.tracks.count);

@@ -21,7 +21,8 @@
 @property (strong, nonatomic) Artist* dbArtist;            // Artist saved
 @property (strong, nonatomic) NSArray* tracks;             // List of tracks
 @property (strong, nonatomic) IBOutlet UITableView *view;  // Table view used to display the tracks
-@property (strong, nonatomic) IBOutlet UIButton *playAllButton;
+
+@property (strong, nonatomic) IBOutlet UISwitch *playAllSwitch;
 
 @property (assign, nonatomic) BOOL offline;
 
