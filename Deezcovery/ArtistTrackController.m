@@ -29,6 +29,7 @@
     
     // Configure cell
     cell.textLabel.text = [[NSString alloc] initWithFormat:@"%@ - (%@)", track[@"title"], track[@"album"][@"title"]];
+    cell.imageView.image = [UIImage imageNamed:@"play"];
     if(++index % 2 == 0)
         cell.backgroundColor = [UIColor colorWithRed:0.99 green:0.99 blue:0.99 alpha:1.0];
     
@@ -68,23 +69,24 @@
         if(self.player.playing) {
             [self.player stop];
             NSLog(@"Stopping music");
-            cell.textLabel.text = [[NSString alloc]initWithFormat:@"\u2B07 %@", [cell.textLabel.text substringFromIndex:2]];
+            
+            cell.imageView.image = [UIImage imageNamed:@"play"];
         } else {
             [self.player play];
             NSLog(@"Resuming music");
-            cell.textLabel.text = [[NSString alloc]initWithFormat:@"\u25B6 %@", [cell.textLabel.text substringFromIndex:2]];
+            cell.imageView.image = [UIImage imageNamed:@"pause"];
         }
     } else {
         
         // Get the previous cell
         UITableViewCell *oldCell = [tableView cellForRowAtIndexPath: [NSIndexPath indexPathForRow:self.playingTrack inSection:0]];
         if(oldCell) {
-            oldCell.textLabel.text = [oldCell.textLabel.text substringFromIndex:2];
+            oldCell.imageView.image = [UIImage imageNamed:@"play"];
         }
         
         // Prepare the new cell
         self.playingTrack = indexPath.row;
-        cell.textLabel.text = [[NSString alloc]initWithFormat:@"\U0001F501 %@", cell.textLabel.text];
+        cell.imageView.image = [UIImage imageNamed:@"loading"];
         
         // Stop the old player
         if(self.player) {
@@ -104,7 +106,7 @@
                     self.player.delegate = self;
                     [self.player play];
                     NSLog(@"Starting playing music");
-                    cell.textLabel.text = [[NSString alloc]initWithFormat:@"\u25B6 %@", [cell.textLabel.text substringFromIndex:3]];
+                    cell.imageView.image = [UIImage imageNamed:@"pause"];
                 });
             } else {
                 NSLog(@"Error loading image");
@@ -148,7 +150,7 @@
     UITableViewCell *oldCell = [self.tableView cellForRowAtIndexPath: [NSIndexPath indexPathForRow:self.playingTrack inSection:0]];
     self.playingTrack = -1;
     if(oldCell) {
-        oldCell.textLabel.text = [oldCell.textLabel.text substringFromIndex:2];
+        oldCell.imageView.image = [UIImage imageNamed:@"play"];
     }
     NSLog(@"Music ended");
 }
