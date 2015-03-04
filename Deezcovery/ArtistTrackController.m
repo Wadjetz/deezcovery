@@ -124,34 +124,39 @@
     self.playingTrack = -1;
     self.db = [DBManager sharedInstance];
     self.dbArtist = [self.db getArtist:self.artist.artist_id];
-    self.tracks = [@[] mutableCopy];
-
-    // Artist's tracks
-    dispatch_async(dispatch_get_global_queue(0, 0), ^{
-        NSData *data = [[NSData alloc] initWithContentsOfURL:[NSURL URLWithString:[DeezerService getTracksLink:self.artist.artist_id]]];
-
-        if(data) {
-            // Fill the artists list with the results
-            NSDictionary *results = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:nil];
-            if([results objectForKey:@"data"]) {
-                NSArray *jsonTracks = (NSArray*)results[@"data"];
-                for (id item in jsonTracks) {
-                    Track * track = [Track trackFromJson:item];
-                    [self.tracks addObject:track];
-                    NSLog(@"%@", track.title);
+    
+    if (self.dbArtist == nil) {
+        // Artist's tracks
+        dispatch_async(dispatch_get_global_queue(0, 0), ^{
+            NSData *data = [[NSData alloc] initWithContentsOfURL:[NSURL URLWithString:[DeezerService getTracksLink:self.artist.artist_id]]];
+            
+            if(data) {
+                // Fill the artists list with the results
+                NSDictionary *results = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:nil];
+                if([results objectForKey:@"data"]) {
+                    NSArray *jsonTracks = (NSArray*)results[@"data"];
+                    NSMutableArray * tracksTmp = [@[] mutableCopy];
+                    for (id item in jsonTracks) {
+                        Track * track = [Track trackFromJson:item];
+                        [tracksTmp addObject:track];
+                        NSLog(@"%@", track.title);
+                    }
+                    self.tracks = [NSArray arrayWithArray:tracksTmp];
+                } else {
+                    self.tracks = [self.db getTracks:self.artist];
                 }
+                
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [self.view reloadData];
+                });
             } else {
-                self.tracks = [self.dbArtist mutableCopy];
+                NSLog(@"Error loading tracks");
             }
-
-            dispatch_async(dispatch_get_main_queue(), ^{
-                [self.view reloadData];
-            });
-        } else {
-            NSLog(@"Error loading tracks");
-        }
-    });
-
+        });
+    } else {
+        self.tracks = [self.db getTracks:self.dbArtist];
+    }
+    
 }
 
 // -- Called when the player ends the music --

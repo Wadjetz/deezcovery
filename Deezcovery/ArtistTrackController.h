@@ -19,7 +19,7 @@
 
 @property (strong, nonatomic) Artist* artist;
 @property (strong, nonatomic) Artist* dbArtist;
-@property (strong, nonatomic) NSMutableArray * tracks;
+@property (strong, nonatomic) NSArray * tracks;
 @property (strong, nonatomic) IBOutlet UITableView *view;
 
 @property (strong, nonatomic) DBManager* db;
