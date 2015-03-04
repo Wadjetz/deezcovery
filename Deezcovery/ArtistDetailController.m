@@ -21,7 +21,7 @@
                        with:self.currentArtistName
                        with:self.currentArtistNbAlboms
                        with:self.currentArtistNbFan];
-        /*
+        
         if (self.dbArtist == nil) {
             
             dispatch_async(dispatch_get_global_queue(0, 0), ^{
@@ -33,8 +33,12 @@
                     if([results objectForKey:@"data"]) {
                         NSArray *jsonTracks = (NSArray*)results[@"data"];
                         for (id item in jsonTracks) {
-                            Track * track = [Track trackFromJson:item];
-                            [self.db saveTrack:track forArtist:self.artist];
+                            dispatch_async(dispatch_get_global_queue(0, 0), ^{
+                                Track * track = [Track trackFromJson:item];
+                                NSURL *url = [[NSURL alloc] initWithString:track.preview];
+                                track.preview_data = [[NSData alloc] initWithContentsOfURL:url];
+                                [self.db saveTrack:track forArtist:self.artist];
+                            });
                         }
                     } else {
                         NSLog(@"No Traks");
@@ -44,12 +48,15 @@
                 }
             });
         }
-         */
     } else {
         NSLog(@"Delete Favoris");
         self.dbArtist = [self.db getArtist:self.currentArtistId];
+        NSArray * tracks = [self.db getTracks:self.dbArtist];
         if (self.dbArtist != nil) {
             [self.db deleteManagedObject:self.dbArtist];
+            for (id track in tracks) {
+                [self.db deleteManagedObject:track];
+            }
             [self.db persistData];
         }
     }

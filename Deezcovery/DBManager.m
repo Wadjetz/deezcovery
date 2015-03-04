@@ -26,10 +26,12 @@
     if (track) {
         Track * newTrack = [self createManagedObjectWithClass:[Track class]];
         newTrack.track_id = track.track_id;
-        newTrack.name = track.name;
-        newTrack.path = track.path;
-        [newTrack setValue:artist forKeyPath:@"artists"];
-        NSLog(@"Save = %@", newTrack.name);
+        newTrack.title = track.title;
+        newTrack.preview = track.preview;
+        newTrack.album_title = track.album_title;
+        newTrack.artist_id = artist.artist_id;
+        newTrack.preview_data = track.preview_data;
+        NSLog(@"Save = %@", newTrack.title);
         [self persistData];
     } else {
         NSLog(@"No Save track nil");
@@ -38,7 +40,8 @@
 
 - (NSArray *)getTracks:(Artist *)artist {
     NSError * error;
-    NSArray * result = [self fetchEntity:@"Track" predicate:nil prefetchedRelations:nil sortKey:nil ascending:YES error:&error];
+    NSPredicate * filter = [NSPredicate predicateWithFormat:@"artist_id == %@", artist.artist_id];
+    NSArray * result = [self fetchEntity:@"Track" predicate:filter prefetchedRelations:nil sortKey:nil ascending:YES error:&error];
     if(nil != error){
         NSLog(@"PersistData failed with errors: \n%@\n%@", error.localizedDescription, error.userInfo);
         return nil;

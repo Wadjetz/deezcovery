@@ -21,9 +21,11 @@
         if([key isEqualToString:@"id"]) {
             track.track_id = json[key];
         } else if ([key isEqualToString:@"title"]) {
-            track.name = json[key];
+            track.title = json[key];
         } else if ([key isEqualToString:@"preview"]) {
-            track.path = json[key];
+            track.preview = json[key];
+        } else if ([key isEqualToString:@"album"]) {
+            track.album_title = json[key][@"title"];
         }
     }
     

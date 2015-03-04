@@ -5,16 +5,17 @@
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="nb_album" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
         <attribute name="nb_fan" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
-        <relationship name="tracks" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Track" inverseName="artists" inverseEntity="Track" syncable="YES"/>
     </entity>
     <entity name="Track" representedClassName="Track" syncable="YES">
-        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="path" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="album_title" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="artist_id" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+        <attribute name="preview" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="preview_data" optional="YES" attributeType="Binary" syncable="YES"/>
+        <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="track_id" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
-        <relationship name="artists" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Artist" inverseName="tracks" inverseEntity="Artist" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Artist" positionX="-54" positionY="18" width="128" height="118"/>
-        <element name="Track" positionX="162" positionY="36" width="128" height="103"/>
+        <element name="Artist" positionX="-54" positionY="18" width="128" height="105"/>
+        <element name="Track" positionX="162" positionY="36" width="128" height="135"/>
     </elements>
 </model>
