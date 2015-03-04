@@ -10,6 +10,8 @@
 #import "ArtistTrackController.h"
 
 @implementation ArtistDetailController
+
+// -- On favorite switch action --
 - (IBAction)onOfFavorisSwitch:(id)sender {
     NSLog(@"dbArtist = %@", self.dbArtist.artist_id);
     NSLog(@"artist = %@", self.artist.artist_id);
@@ -19,7 +21,7 @@
         // Artist's tracks
         [self.db saveArtist:self.currentArtistId
                        with:self.currentArtistName
-                       with:self.currentArtistNbAlboms
+                       with:self.currentArtistNbAlbums
                        with:self.currentArtistNbFan];
         
         if (self.dbArtist == nil) {
@@ -62,6 +64,7 @@
     }
 }
 
+// -- Call on load --
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.db = [DBManager sharedInstance];
@@ -72,7 +75,7 @@
     
     self.currentArtistId = self.artist.artist_id.copy;
     self.currentArtistName = self.artist.name.copy;
-    self.currentArtistNbAlboms = self.artist.nb_album.copy;
+    self.currentArtistNbAlbums = self.artist.nb_album.copy;
     self.currentArtistNbFan = self.artist.nb_fan.copy;
     
     if(self.dbArtist == nil) {
@@ -101,14 +104,17 @@
     
 }
 
+// -- Memory warning --
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
 }
 
+// -- Segue to show tracks --
 - (IBAction)showTrackList:(id)sender {
     [self performSegueWithIdentifier:@"showTracklist" sender:self.artist];
 }
 
+// -- Prepare to perform segue --
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // Prepare the segue, set the sended artist
     if([segue.identifier isEqualToString:@"showTracklist"]) {

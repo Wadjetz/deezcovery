@@ -10,6 +10,7 @@
 
 @implementation Artist (JsonSerializer)
 
+// -- Deserialise an artist from JSON --
 + (Artist *)artistFromJson:(NSDictionary *)json {
     if (!json) {
         return nil;

@@ -17,14 +17,15 @@
 
 @interface ArtistTrackController : UITableViewController <AVAudioPlayerDelegate>
 
-@property (strong, nonatomic) Artist* artist;
-@property (strong, nonatomic) Artist* dbArtist;
-@property (strong, nonatomic) NSArray * tracks;
-@property (strong, nonatomic) IBOutlet UITableView *view;
+@property (strong, nonatomic) Artist* artist;              // Artist which tracks are displayed
+@property (strong, nonatomic) Artist* dbArtist;            // Artist saved
+@property (strong, nonatomic) NSArray* tracks;             // List of tracks
+@property (strong, nonatomic) IBOutlet UITableView *view;  // Table view used to display the tracks
 @property (assign, nonatomic) BOOL offline;
 
-@property (strong, nonatomic) DBManager* db;
+@property (strong, nonatomic) DBManager* db;  // Database manager
 
+// -- Delegate for the audio player --
 - (void)audioPlayerDidFinishPlaying:(AVAudioPlayer *)player successfully:(BOOL)flag;
 
 @end

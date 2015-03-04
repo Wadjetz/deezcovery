@@ -10,8 +10,8 @@
 
 @interface ArtistTrackController()
 
-@property AVAudioPlayer *player;
-@property long playingTrack;
+@property AVAudioPlayer *player; // Audio player
+@property long playingTrack;     // Number of the track currently playing
 
 @end
 
@@ -121,9 +121,9 @@
             }
         });
     }
-
 }
 
+// -- Called on load --
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.playingTrack = -1;

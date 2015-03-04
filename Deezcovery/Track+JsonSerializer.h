@@ -11,6 +11,7 @@
 
 @interface Track (JsonSerializer)
 
+// -- Deserialise a track from JSON --
 + (Track *)trackFromJson:(NSDictionary *)json;
 
 @end

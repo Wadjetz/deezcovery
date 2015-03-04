@@ -11,8 +11,8 @@
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
-@property (strong, nonatomic) UIWindow *window;
-@property (strong, nonatomic) DBManager *db;
+@property (strong, nonatomic) UIWindow *window; // Main Window
+@property (strong, nonatomic) DBManager *db;    // Database manager
 
 @end
 

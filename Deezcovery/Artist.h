@@ -11,10 +11,9 @@
 
 @interface Artist : NSManagedObject
 
-@property (nonatomic) NSNumber *artist_id;
+@property (nonatomic) NSNumber *artist_id;    // The artist's ID
 @property (nonatomic, strong) NSString *name; // The artist's name
-@property (nonatomic) NSNumber *nb_album; // The number of albums the artist has
-@property (nonatomic) NSNumber *nb_fan; // The number of fans the artist has
-
+@property (nonatomic) NSNumber *nb_album;     // The number of albums the artist has
+@property (nonatomic) NSNumber *nb_fan;       // The number of fans the artist has
 
 @end

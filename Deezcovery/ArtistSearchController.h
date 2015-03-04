@@ -10,8 +10,7 @@
 
 @interface ArtistSearchController : UITableViewController <UISearchBarDelegate>
 
-@property (strong, nonatomic) IBOutlet UISearchBar *searchBar;
-@property (strong, nonatomic) IBOutlet UITableView *tableView;
-
+@property (strong, nonatomic) IBOutlet UISearchBar *searchBar; // Search bar used in the view
+@property (strong, nonatomic) IBOutlet UITableView *tableView; // Table view used to display the results
 
 @end

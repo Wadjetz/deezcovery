@@ -12,11 +12,11 @@
 
 @interface Track : NSManagedObject
 
-@property (nonatomic, retain) NSNumber * track_id;
-@property (nonatomic, retain) NSString * title;
-@property (nonatomic, retain) NSString * preview;
-@property (nonatomic, retain) NSData * preview_data;
-@property (nonatomic, retain) NSString * album_title;
-@property (nonatomic, retain) NSNumber * artist_id;
+@property (nonatomic, retain) NSNumber * track_id;      // The track's ID
+@property (nonatomic, retain) NSString * title;         // The track's name
+@property (nonatomic, retain) NSString * preview;       // Preview string
+@property (nonatomic, retain) NSData * preview_data;    // Preview data
+@property (nonatomic, retain) NSString * album_title;   // The track album's title
+@property (nonatomic, retain) NSNumber * artist_id;     // The artist's ID
 
 @end

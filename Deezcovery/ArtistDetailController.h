@@ -15,21 +15,20 @@
 
 @interface ArtistDetailController : UIViewController
 
-@property (strong, nonatomic) Artist* artist;
-@property (strong, nonatomic) Artist* dbArtist;
+@property (strong, nonatomic) Artist* artist;   // Artist loaded from the deezer api
+@property (strong, nonatomic) Artist* dbArtist; // Artist loaded from local
 
-@property (strong, nonatomic) NSNumber* currentArtistId;
-@property (strong, nonatomic) NSString* currentArtistName;
-@property (strong, nonatomic) NSNumber* currentArtistNbAlboms;
-@property (strong, nonatomic) NSNumber* currentArtistNbFan;
+@property (strong, nonatomic) NSNumber* currentArtistId;       // Artist's ID
+@property (strong, nonatomic) NSString* currentArtistName;     // Artist's name
+@property (strong, nonatomic) NSNumber* currentArtistNbAlbums; // Artist's number of albums
+@property (strong, nonatomic) NSNumber* currentArtistNbFan;    // Artist's number of fans
 
-@property (strong, nonatomic) DBManager* db;
+@property (strong, nonatomic) DBManager* db;   // Database manager
 
-@property (strong, nonatomic) IBOutlet UILabel *artistName;
-@property (strong, nonatomic) IBOutlet UIImageView *artistImage;
-@property (strong, nonatomic) IBOutlet UILabel *nbFans;
-@property (strong, nonatomic) IBOutlet UILabel *nbAlbums;
-
-@property (strong, nonatomic) IBOutlet UISwitch *onOfFavorisSwitch;
+@property (strong, nonatomic) IBOutlet UILabel *artistName;         // Artist name's label
+@property (strong, nonatomic) IBOutlet UIImageView *artistImage;    // Artist image's label
+@property (strong, nonatomic) IBOutlet UILabel *nbFans;             // Artist number of fans
+@property (strong, nonatomic) IBOutlet UILabel *nbAlbums;           // Artist number of albums
+@property (strong, nonatomic) IBOutlet UISwitch *onOfFavorisSwitch; // Favorite switch
 
 @end

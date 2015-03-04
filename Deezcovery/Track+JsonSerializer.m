@@ -10,6 +10,7 @@
 
 @implementation Track (JsonSerializer)
 
+// -- Deserialise a track from JSON --
 + (Track *)trackFromJson:(NSDictionary *)json {
     if (!json) {
         return nil;

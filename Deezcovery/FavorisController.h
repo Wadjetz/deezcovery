@@ -13,6 +13,6 @@
 
 @interface FavorisController : UITableViewController <UITableViewDelegate, UITableViewDataSource>
 
-@property (strong, nonatomic) IBOutlet UITableView *tableView;
+@property (strong, nonatomic) IBOutlet UITableView *tableView; // View used to display the favorites
 
 @end

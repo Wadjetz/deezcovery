@@ -13,15 +13,16 @@
 
 @interface FavorisController()
 
-@property (strong, nonatomic) DBManager* db;
-@property (strong, nonatomic) NSMutableArray* favoris;
-@property (strong, nonatomic) Artist* selectedArtist;
+@property (strong, nonatomic) DBManager* db;           // Database manager
+@property (strong, nonatomic) NSMutableArray* favoris; // Favorites list
+@property (strong, nonatomic) Artist* selectedArtist;  // Selected artist
 
 @end
 
 
 @implementation FavorisController
 
+// -- Call on load --
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.db = [DBManager sharedInstance];
@@ -32,12 +33,14 @@
     self.favoris = [[self.db fetchArtists] mutableCopy];
 }
 
+// -- Call before the view appears --
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     self.favoris = [[self.db fetchArtists] mutableCopy];
     [self.tableView reloadData];
 }
 
+// -- Memory warning --
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
 }
