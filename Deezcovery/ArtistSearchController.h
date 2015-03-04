@@ -8,9 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ArtistSearchController : UITableViewController <UISearchDisplayDelegate, UISearchBarDelegate>
+@interface ArtistSearchController : UITableViewController <UISearchBarDelegate>
 
 @property (strong, nonatomic) IBOutlet UISearchBar *searchBar;
+@property (strong, nonatomic) IBOutlet UITableView *tableView;
 
 
 @end

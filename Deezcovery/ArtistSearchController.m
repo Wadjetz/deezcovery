@@ -14,9 +14,8 @@
 
 @interface ArtistSearchController ()
 
-@property (nonatomic, strong)UISearchDisplayController *searchController;
+@property (nonatomic, strong)UISearchController *searchController;
 @property (strong)NSMutableArray *artistsList;
-@property (strong)UITableView *resultsView;
 
 @property NSOperationQueue *queue;
 
@@ -31,9 +30,8 @@ static NSString *CellIdentifier = @"CellIdentifier";
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    // Setup controller
-    self.searchController = [[UISearchDisplayController alloc] init];
-    self.searchController.searchResultsDataSource = self;
+    // Setup delegate
+    self.searchBar.delegate = self;
     
     // Init model
     self.artistsList = [[NSMutableArray alloc] init];
@@ -56,10 +54,12 @@ static NSString *CellIdentifier = @"CellIdentifier";
 // -- Number of cells --
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     
-    if(self.artistsList)
+    NSLog(@"View reload");
+    
+    if(self.artistsList && [self.artistsList count] > 0)
         return [self.artistsList count];
     else
-        return 0;
+        return 1;
 }
 
 // -- View of a cell --
@@ -69,17 +69,24 @@ static NSString *CellIdentifier = @"CellIdentifier";
     
     // Create a new cell
     UITableViewCell *cell = [[UITableViewCell alloc] init];
-    Artist* artist = self.artistsList[indexPath.row];
     
     if(indexPath.row > 0) {
+        Artist* artist = self.artistsList[indexPath.row];
         cell.textLabel.text = [[NSString alloc] initWithFormat:@"%@ - (%@ fans)", artist.name, artist.nb_fan];
         if(++index % 2 == 0)
             cell.backgroundColor = [UIColor colorWithRed:0.99 green:0.99 blue:0.99 alpha:1.0];
     } else {
         index = 0;
-        cell.textLabel.text = [[NSString alloc] initWithFormat:@"Similar to %@ :", artist.name];
-        cell.textLabel.font = [UIFont boldSystemFontOfSize:18.0];
-        cell.backgroundColor = [UIColor lightGrayColor];
+        if(self.artistsList && [self.artistsList count] > 0) {
+            Artist* artist = self.artistsList[indexPath.row];
+            cell.textLabel.text = [[NSString alloc] initWithFormat:@"Similaire à %@ :", artist.name];
+            cell.textLabel.font = [UIFont boldSystemFontOfSize:18.0];
+            cell.backgroundColor = [UIColor lightGrayColor];
+        } else {
+            cell.textLabel.text = @"Aucun résultats";
+            cell.textLabel.textColor = [UIColor colorWithRed:0.8 green:0.8 blue:0.8 alpha:0.9];
+            cell.textLabel.textAlignment = NSTextAlignmentCenter;
+        }
     }
     
     return cell;
@@ -100,6 +107,7 @@ static NSString *CellIdentifier = @"CellIdentifier";
     [self performSegueWithIdentifier:@"showArtist" sender:self.artistsList[indexPath.row]];
 }
 
+// -- Artist detail --
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // Prepare the segue, set the sended artist
     if([segue.identifier isEqualToString:@"showArtist"]) {
@@ -108,22 +116,17 @@ static NSString *CellIdentifier = @"CellIdentifier";
     }
 }
 
-#pragma mark Search Display Delegate Methods
-
--(void)searchDisplayController:(UISearchDisplayController *)controller didLoadSearchResultsTableView:(UITableView *)tableView {
-    self.resultsView = tableView;
+// -- Text changed in search bar --
+- (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText {
+    [self searchArtisteAndSimmilarTo:searchText];
 }
 
--(void)searchArtist:(NSString*) artistName {
-    
-}
-
+// -- Search for a similar artist --
 -(void)searchSimilarArtist:(NSDictionary*) artist {
-    
     // The URL request
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
     [request setHTTPMethod:@"GET"];
-    [request setURL:[NSURL URLWithString:[[NSString alloc] initWithFormat:@"%@/artist/%@/related", DEEZER_ENDPOINT, artist[@"id"]]]];
+    [request setURL:[NSURL URLWithString:[DeezerService getArtistsRelated:artist[@"id"]]]];
     
     // The block called
     [NSURLConnection sendAsynchronousRequest:request queue:self.queue completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
@@ -150,23 +153,22 @@ static NSString *CellIdentifier = @"CellIdentifier";
     }];
 }
 
-
--(BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchString:(NSString *)searchString {
+// -- Search for an artist and similar artists --
+- (void)searchArtisteAndSimmilarTo:(NSString *)searchString {
+    NSLog(@"Search request with '%@'", searchString);
     
     // Cancel all the pending searchs
     [self.queue cancelAllOperations];
     
     // Nothing to search
     if(self.searchBar.text.length <= 0) {
-        [self.artistsList removeAllObjects];
-        
-        return TRUE;
+        return;
     }
     
     // The URL request
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
     [request setHTTPMethod:@"GET"];
-    [request setURL:[NSURL URLWithString:[[NSString alloc] initWithFormat:@"%@/search/artist?q=%@", DEEZER_ENDPOINT, [self.searchBar.text stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLHostAllowedCharacterSet]]]]];
+    [request setURL:[NSURL URLWithString:[[NSString alloc] initWithFormat:@"%@/search/artist?q=%@", DEEZER_ENDPOINT, [searchString stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLHostAllowedCharacterSet]]]]];
     
     // The block called
     [NSURLConnection sendAsynchronousRequest:request queue:self.queue completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
@@ -191,13 +193,11 @@ static NSString *CellIdentifier = @"CellIdentifier";
         }
     }];
     
-    return YES;
 }
 
+// -- For the view reload --
 -(void) reloadResults {
-    if(self.resultsView)
-        [self.resultsView performSelectorOnMainThread:@selector(reloadData) withObject:nil waitUntilDone:NO];
+    [self.tableView performSelectorOnMainThread:@selector(reloadData) withObject:nil waitUntilDone:NO];
 }
-
 
 @end

@@ -31,26 +31,13 @@
                                 </connections>
                             </tableViewCell>
                         </prototypes>
-                        <connections>
-                            <outlet property="dataSource" destination="Vpw-Do-4sE" id="BWP-CH-HL8"/>
-                            <outlet property="delegate" destination="Vpw-Do-4sE" id="VT2-QZ-YaY"/>
-                        </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Recherche d'artistes" id="Q8y-yQ-bUd"/>
                     <connections>
                         <outlet property="searchBar" destination="f6a-bv-ZbJ" id="lbS-Z3-Eya"/>
-                        <outlet property="searchDisplayController" destination="6c0-10-LQR" id="LAo-tD-afE"/>
+                        <outlet property="tableView" destination="Y8W-AC-b9Q" id="RaB-x9-3oM"/>
                     </connections>
                 </tableViewController>
-                <searchDisplayController id="6c0-10-LQR">
-                    <connections>
-                        <outlet property="delegate" destination="Vpw-Do-4sE" id="9FE-3V-C79"/>
-                        <outlet property="searchBar" destination="f6a-bv-ZbJ" id="9IG-ay-hPP"/>
-                        <outlet property="searchContentsController" destination="Vpw-Do-4sE" id="kO5-vs-EMC"/>
-                        <outlet property="searchResultsDataSource" destination="Vpw-Do-4sE" id="c1N-xy-w9i"/>
-                        <outlet property="searchResultsDelegate" destination="Vpw-Do-4sE" id="uyj-sA-6b7"/>
-                    </connections>
-                </searchDisplayController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KWG-JB-T7F" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1255" y="-299"/>
@@ -296,6 +283,6 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="n3H-2z-LNf"/>
+        <segue reference="TGn-T4-rEV"/>
     </inferredMetricsTieBreakers>
 </document>

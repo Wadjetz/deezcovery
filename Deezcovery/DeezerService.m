@@ -25,4 +25,9 @@
     return [[NSString alloc]initWithFormat:@"%@/artist/%@", DEEZER_ENDPOINT, artist_id];
 }
 
+// Return the artist's related other artists
++ (NSString *)getArtistsRelated:(NSNumber*)artist_id {
+    return [[NSString alloc]initWithFormat:@"%@/artist/%@/related", DEEZER_ENDPOINT, artist_id];
+}
+
 @end
