@@ -104,7 +104,11 @@ static NSString *CellIdentifier = @"CellIdentifier";
 
 // -- Cell selected --
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    [self performSegueWithIdentifier:@"showArtist" sender:self.artistsList[indexPath.row]];
+    if (self.artistsList.count > 0) {
+        [self performSegueWithIdentifier:@"showArtist" sender:self.artistsList[indexPath.row]];
+    } else {
+        NSLog(@"Recherche vide");
+    }
 }
 
 // -- Artist detail --
